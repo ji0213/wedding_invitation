@@ -3,7 +3,7 @@
   --ink-soft: #6b6055;
   --paper: #ffffff;
   --apricot: #daa581;
-  --apricot-soft: #c07a51;
+  --apricot-soft: #b46f46;
   --line: rgba(74,65,55,0.14);
   --bg: #fbf6ee;
   --bg-deep: #f3e9d8;
@@ -336,7 +336,7 @@ section{
   display:flex;
   justify-content:space-between;
   font-size:11px;
-  color:rgba(74,65,55,0.35);
+  color:rgba(56, 50, 42, 0.35);
   letter-spacing:0.1em;
   padding:0 4px 16px;
 }
