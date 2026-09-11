@@ -336,7 +336,8 @@ section{
   display:flex;
   justify-content:space-between;
   font-size:11px;
-  color:rgba(19, 18, 16, 0.35);
+  font-weight: 700;
+  color:rgba(74,65,55,0.85);
   letter-spacing:0.1em;
   padding:0 4px 16px;
 }
@@ -348,7 +349,6 @@ section{
   font-size:13px;
   color:rgba(74,65,55,0.55);
   font-weight:300;
-  font-weight: 700;
 }
 .cal-grid .sun{ color:#c97a7a; }
 .cal-grid .dday{
