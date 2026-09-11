@@ -348,6 +348,7 @@ section{
   font-size:13px;
   color:rgba(74,65,55,0.55);
   font-weight:300;
+  font-weight: 700;
 }
 .cal-grid .sun{ color:#c97a7a; }
 .cal-grid .dday{
