@@ -315,7 +315,7 @@ section{
 .when-date{
   text-align:center;
   font-family:'Cormorant Garamond', serif;
-  font-size:22px;
+  font-size:24px;
   letter-spacing:0.06em;
   color:var(--ink);
   margin-bottom:6px;
@@ -393,7 +393,7 @@ section{
 }
 .venue-addr{
   text-align:center;
-  font-size:13px;
+  font-size:15px;
   color:rgba(74,65,55,0.55);
   margin-bottom:28px;
   line-height:1.7;
