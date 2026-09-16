@@ -43,9 +43,12 @@ body{
 @keyframes fadeIn{ to{ opacity:1; } }
 .hero-photo{ position:absolute; inset:0; }
 .hero-photo img{
-  width:100%; height:100%;
+  width:100%;
+  height:100%;
   object-fit:cover;
   display:block;
+  filter: blur(10px);
+  transform: scale(1.08);
 }
 .hero-overlay{
   position:absolute; inset:0;
