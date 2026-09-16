@@ -1,3 +1,10 @@
+(function(){
+  function setHeroHeight(){
+    document.documentElement.style.setProperty('--hero-vh',window.innerHeight + 'px');
+  }
+  setHeroHeight();
+  window.addEventListener('orientationchange',setHeroHeight);
+})()
 const els = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{

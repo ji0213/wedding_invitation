@@ -33,8 +33,7 @@ body{
 
 
 .hero{
-  height:100vh;
-  height:100svh;
+  height: var(--hero-vh,100vh);
   position:relative;
   overflow:hidden;
   text-align:center;
