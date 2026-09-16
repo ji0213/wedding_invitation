@@ -11,6 +11,9 @@
   --shadow: 0 8px 24px rgba(74,65,55,0.08);
   color-scheme: light;
 }
+html, body{
+  overscroll-behavior-y: none;
+}
 *{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body{ background:var(--bg); }
 body{
