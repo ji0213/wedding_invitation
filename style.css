@@ -393,7 +393,7 @@ section{
 }
 .venue-addr{
   text-align:center;
-  font-size:15px;
+  font-size:13px;
   color:rgba(74,65,55,0.55);
   margin-bottom:28px;
   line-height:1.7;
@@ -480,9 +480,6 @@ section{
   margin-bottom: 10px;
 }
 .acc-item:last-child{ margin-bottom: 0; }
-.acc-item, .gb-card{
-  border-top: 0.4em;
-}
 .acc-item,.gb-card, .cal{
   box-shadow: var(--shadow);
 }
