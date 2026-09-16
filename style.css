@@ -514,6 +514,9 @@ section{
   margin-bottom: 10px;
 }
 .acc-item:last-child{ margin-bottom: 0; }
+.acc-item, .gb-card, .cal{
+  box-shadow: var(--shadow);
+}
 .acc-who{
   color:var(--apricot-soft);
   font-size:12px;
