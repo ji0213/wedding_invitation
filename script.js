@@ -196,7 +196,7 @@ loadGuestbook();
 
           const infowindow = new kakao.maps.InfoWindow({
             content: `<div style="padding:6px 8px;
-            font-size:14px;
+            font-size:10px;
             font-weight:700;
             color:#4a4137;
             background:#fff;
