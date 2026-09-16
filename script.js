@@ -195,7 +195,7 @@ loadGuestbook();
           });
 
           const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="padding:8px 14px;
+            content: `<div style="padding:6px 10px;
             font-size:10px;
             font-weight:700;
             color:#4a4137;
