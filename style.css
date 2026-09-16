@@ -8,6 +8,7 @@
   --bg: #fbf6ee;
   --bg-deep: #f3e9d8;
   --card: rgba(255,255,255,0.55);
+  --shadow: 0 8px 24px rgba(74,65,55,0.08);
   color-scheme: light;
 }
 *{ margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -139,7 +140,7 @@ section{
 .divider{
   width:32px;
   height:1px;
-  background:var(--apricot);
+  background:linear-gradient(90deg, transparent, var(--apricot),transparent);
   margin:0 auto 60px;
   opacity:0.6;
 }
@@ -314,14 +315,14 @@ section{
 .when-date{
   text-align:center;
   font-family:'Cormorant Garamond', serif;
-  font-size:20px;
+  font-size:22px;
   letter-spacing:0.06em;
   color:var(--ink);
   margin-bottom:6px;
 }
 .when-day{
   text-align:center;
-  font-size:13px;
+  font-size:16px;
   color:rgba(74,65,55,0.55);
   letter-spacing:0.1em;
   margin-bottom:48px;
@@ -443,7 +444,7 @@ section{
 .transit .t-label{
   color:var(--apricot-soft);
   letter-spacing:0.1em;
-  font-size:11px;
+  font-size:12px;
   display:inline-block;
   width:52px;
 }
@@ -479,6 +480,9 @@ section{
   margin-bottom: 10px;
 }
 .acc-item:last-child{ margin-bottom: 0; }
+.acc-item,.gb-card, .cal{
+  box-shadow: var(--shadow);
+}
 .acc-who{
   color:var(--apricot-soft);
   font-size:12px;
