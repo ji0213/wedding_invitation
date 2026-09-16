@@ -463,18 +463,20 @@ section{
 .map-links a{
   flex:1;
   text-align:center;
-  padding:13px 0;
-  border:1px solid var(--line);
-  border-radius:2px;
-  color:rgba(74,65,55,0.75);
+  padding:14px 0;
+  border:none;
+  border-radius:30px;
+  color:#100f1d;
   text-decoration:none;
   font-size:12.5px;
   letter-spacing:0.06em;
+  font-weight: 5000;
+  box-shadow: 0 4px 14px rgba(192,133,82,0.28);
   transition:border-color 0.2s ease, color 0.2s ease;
 }
 .map-links a:active{
-  border-color:var(--apricot);
-  color:var(--apricot-soft);
+  border-color: scale(0.96);
+  color: 0 2px 9px rgba(192, 133, 82, 0.2);
 }
 .transit{
   margin-top:32px;
