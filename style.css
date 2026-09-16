@@ -28,9 +28,10 @@ body{
     radial-gradient(ellipse at 50% 0%, var(--bg-deep) 0%, var(--bg) 60%);
 }
 
-/* ---------- HERO ---------- */
+
 .hero{
   height:100vh;
+  height:100svh;
   position:relative;
   overflow:hidden;
   text-align:center;
