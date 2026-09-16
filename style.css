@@ -27,6 +27,7 @@ body{
   min-height:100vh;
   background:
     radial-gradient(ellipse at 50% 0%, var(--bg-deep) 0%, var(--bg) 60%);
+    letter-spacing: 0.4em;
 }
 
 
@@ -161,13 +162,13 @@ section{
   display:flex;
   justify-content:center;
   gap:36px;
-  font-size:13.5px;
+  font-size:12px;
   line-height:1.9;
   color:rgba(74,65,55,0.7);
 }
 .parents .side{ text-align:center; }
 .parents .who{
-  font-size:11px;
+  font: size 12.5px;px;
   letter-spacing:0.15em;
   color:var(--apricot-soft);
   margin-bottom:6px;
@@ -393,7 +394,7 @@ section{
 }
 .venue-addr{
   text-align:center;
-  font-size:15px;
+  font-size:13px;
   color:rgba(74,65,55,0.55);
   margin-bottom:28px;
   line-height:1.7;
@@ -480,6 +481,9 @@ section{
   margin-bottom: 10px;
 }
 .acc-item:last-child{ margin-bottom: 0; }
+.acc-item, .gb-card{
+  border-top: 2px solid var(--apricot);
+}
 .acc-item,.gb-card, .cal{
   box-shadow: var(--shadow);
 }
