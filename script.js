@@ -1,5 +1,5 @@
 (function(){
-  var text = '박정희 최지우 결혼합니다.'
+  var text = '박정희♡최지우 결혼합니다.'
   var el = document.getElementById('openingText');
   document.body.style.overflow='hidden';
   [...text].forEach(function(ch,i){
