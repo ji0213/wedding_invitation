@@ -194,15 +194,10 @@ loadGuestbook();
             position: coords
           });
 
-          const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="padding:6px 10px;
-            font-size:10px;
-            font-weight:700;
-            color:#4a4137;
-            background:#fff;
-            border-radius:4px;">${window.__VENUE_NAME || ''}</div>`
-          });
-          infowindow.open(map, new kakao.maps.Marker({ map, position: coords }));
+          const label = document.createElement('dib');
+          label.className = 'map-label';
+          label.textContent = window.__VENUE_NAME||'';
+          mapBox.appendChild(label);
         });
       });
     }catch(err){
