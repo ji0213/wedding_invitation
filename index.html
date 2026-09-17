@@ -36,7 +36,7 @@
     <div class="hero-bottom">
       <h1 class="hero-names en">박정희 <span class="amp">&amp;</span> 최지우</h1>
       <div class="hero-date">2027. 03. 13 Sat</div>
-      <div class="hero-venue">엔팰리스웨딩컨벤션</div>
+      <div class="hero-venue">엔팰리스컨벤션</div>
     </div>
     <div class="scroll-hint">
       <span>SCROLL</span>
@@ -107,13 +107,16 @@
   <section>
     <div class="kicker reveal">Location</div>
     <div class="divider reveal"></div>
-    <div class="venue-name reveal">엔팰리스웨딩컨벤션 1층</div>
-    <div class="venue-addr reveal"><b>경기 평택시 경기대로 721 엔팰리스웨딩컨벤션</b><br>0507-1348-6500</div>
+    <div class="venue-name reveal">엔팰리스컨벤션 1층</div>
+    <div class="venue-addr reveal"><b>경기 평택시 경기대로 721 엔팰리스컨벤션</b><br>0507-1348-6500</div>
     <div class="map-box reveal" id="kakaoMap">지도를 불러오는 중...</div>
     <div class="map-links reveal">
-      <a href="https://naver.me/xKEqr11L" target="_blank">네이버지도</a>
-      <a href="https://place.map.kakao.com/2077737631" target="_blank">카카오맵</a>
-       <a href="https://tmap.life/b684249c" target="_blank">티맵</a>
+      <a href="https://naver.me/xKEqr11L" target="_blank">
+        <img src="naver.jpg" alt="" class="map-icon">네이버지도</a>
+      <a href="https://place.map.kakao.com/2077737631" target="_blank">
+        <img src="kakao.jpg" alt="" class="map-icon">카카오맵</a>
+       <a href="https://tmap.life/b684249c" target="_blank">
+        <img src="tmap.jpg" alt="" class="map-icon">티맵</a>
     </div>
     <div class="transit reveal">
       <div class="transit-group">
@@ -136,7 +139,7 @@
       <div class="transit-group">
         <div class="transit-label">🚈SRT / 지하철 이용 시</div>
         <div class="transit-body">
-          지제역 1번출구에서 도보 665m (도보 10분)<br>
+          평택지제역 1번출구에서 도보 665m (도보 10분)<br>
           * 큰대로변 우측 버스정류장에서 셔틀버스 이용 가능
         </div>
       </div>
@@ -200,11 +203,17 @@
     <p class="gb-empty" id="gbEmpty">아직 남겨진 메시지가 없어요.<br>첫 축하를 전해주세요 ♥</p>
   </section>
   <footer>
-    <button class="share=btn Kakao" onclick="shareKakao()">카카오톡 공유하기</button>
+    <button class="share=btn kakao" onclick="shareKakao()">
+      <span class="kakao-icon">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#3c1e1e1">
+          <path d="M12 3C6.48 3 2 6.58 2 11c0 2.86 1.9 5.36 4.76 6.8-.15.53-.96 3.38-.99 3.6 0 0-.02.16.08.22.1.06.22.02.22.02.29-.04 3.35-2.2 3.87-2.57.66.1 1.35.15 2.06.15 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
+        </svg>
+      </span>
+      카카오톡 공유하기</button>
     <div class="footer-mark en">Jung-hee &amp; Ji-woo</div>
     <div class="footer-note">
         2027. 03. 13. 토요일 오후 1시<br>
-        엔팰리스웨딩컨벤션 1층<br><br>
+        엔팰리스컨벤션 1층<br><br>
         &copy; 2027
     </div>
   </footer>
@@ -216,7 +225,7 @@
 <script>
   window.__KAKAO_JS_KEY = '2fe07a242a9c0d0d443efabf6b81f72d';
   window.__VENUE_ADDRESS = '경기도 평택시 경기대로 721';
-  window.__VENUE_NAME = '엔팰리스웨딩컨벤션';
+  window.__VENUE_NAME = '엔팰리스컨벤션';
 </script>
 <script>
   if(window.Kakao && !Kakao.isInitialized()){

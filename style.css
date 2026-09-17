@@ -499,6 +499,13 @@ section{
   border-color: scale(0.96);
   color: 0 2px 9px rgba(192, 133, 82, 0.2);
 }
+.map-icon{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 .transit{
   margin-top:32px;
   display: flex;
@@ -719,7 +726,10 @@ footer{
   line-height:1.9;
 }
 .share-btn.kakao{
-  display:block;
+  display:flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
   margin:0 auto 10 px;
   background: #fee500;
   color:#3c1e1e;
