@@ -49,13 +49,14 @@ body{
 .opening-text .ch{
   display: inline-block !important;
   opacity: 0 !important;
-  transition: none !important;
-  animation: none !important;
-  transform: none !important;
+  max-width: 0px !important;
+  overflow: hidden !important;
+  vertical-align: bottom;
+  transition: max-width 0.35s ease-in-out, opacity 0.2s ease-in-out !important;
 }
 .opening-text .ch.in{
-  opacity: 1 !important;
-  transition: none !important;
+   opacity: 1 !important;
+  max-width: 2em !important;
 }
 .en{ font-family:'Cormorant Garamond', serif; }
 .wrap{
