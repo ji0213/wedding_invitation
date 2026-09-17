@@ -763,8 +763,8 @@ footer{
   gap: 8px;
   width: 100%;
   margin:0 auto 10 px;
-  background: #fee500;
-  color:#3c1e1e;
+  background: #F3EAC5;
+  color:var(--ink);
   border: none;
   padding: 13px 26px;
   font-size: 13px;
