@@ -306,10 +306,10 @@ function shareKakao(){
     alert('카카오 공유를 불러오지 못했어요. 잠시후 다시 시도해 주세요.');
     return;
   }
-  kakao.Share.sendDefault({
+  Kakao.Share.sendDefault({
     ObjectType: 'feed',
     content: {
-      title: '박정희♡최지우 결혼합니다.',
+      title: '박정희♡최지우 결혼합니다',
       description: '2027.03.13 토요일 엔팰리스웨딩컨벤션',
       imageUrl: 'https://ji0213.github.io/wedding_invitation/asd.png',
       link: {

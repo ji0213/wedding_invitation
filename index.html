@@ -217,14 +217,14 @@
   window.__VENUE_ADDRESS = '경기도 평택시 경기대로 721';
   window.__VENUE_NAME = '엔팰리스웨딩컨벤션';
 </script>
-<script
-  src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2fe07a242a9c0d0d443efabf6b81f72d&autoload=false&libraries=services"
-  onerror="console.warn('카카오맵 SDK 로드 실패')">
-</script>
 <script>
   if(window.Kakao && !Kakao.isInitialized()){
     Kakao.init(window.__2fe07a242a9c0d0d443efabf6b81f72d);
   }
+</script>
+<script
+  src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2fe07a242a9c0d0d443efabf6b81f72d&autoload=false&libraries=services"
+  onerror="console.warn('카카오맵 SDK 로드 실패')">
 </script>
 <script src="script.js"></script>
 </body>
