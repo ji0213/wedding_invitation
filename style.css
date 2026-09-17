@@ -592,7 +592,7 @@ section{
 .gift-panel{
   max-height:0;
   overflow:hidden;
-  transition:max-height 0.25s ease;
+  transition:max-height 0.4s ease, margin-top 0.4s ease;
 }
 .gift-panel.open{ max-height:420px; margin-top:24px; }
 .acc-item{
