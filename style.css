@@ -479,6 +479,7 @@ section{
   box-shadow: 0 2px 10px rgba(0,0,0,0.18);
   z-index: 5;
   pointer-events: none;
+  white-space: nowrap;
 }
 .map-links{
   display:flex;
