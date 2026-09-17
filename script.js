@@ -198,7 +198,7 @@ loadGuestbook();
           overlayContent.className = 'map-label';
           overlayContent.textContent = window.__VENUE_NAME||'';
 
-          const cuctomOverlay = new kakao.map.CustomOverlay({
+          const customOverlay = new kakao.map.CustomOverlay({
             map: map,
             position: coords,
             content: overlayContent,
