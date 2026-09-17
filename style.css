@@ -42,13 +42,12 @@ body{
   color: #f3e9d8;
   text-align: center;
 }
-.opening-text.ch{
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+.opening-text .ch{
+display: inline-block !important;
+  opacity: 0 !important;
+  transition: none !important
 }
-.opening-text.ch.in{
+.opening-text .ch.in{
   opacity: 1;
   transform: translateY(0);
 }
