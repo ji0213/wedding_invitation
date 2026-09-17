@@ -23,16 +23,20 @@ body{
 }
 .opening-overlay{
   position: fixed;
-  inset: 0;
-  background: #1c1712;
-  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.80) !important; 
+  z-index: 9999 !important; 
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: opacity 0.8s ease;
+  align-items: center;
+  transition: opacity 0.5s ease-in-out;
+  
 }
 .opening-overlay.hide{
-  opacity: 0;
+  opacity: 0 !important;
   pointer-events: none;
 }
 .opening-text{
@@ -43,14 +47,15 @@ body{
   text-align: center;
 }
 .opening-text .ch{
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: inline-block !important;
+  opacity: 0 !important;
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
 }
 .opening-text .ch.in{
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transition: none !important;
 }
 .en{ font-family:'Cormorant Garamond', serif; }
 .wrap{
