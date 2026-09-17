@@ -688,10 +688,11 @@ section{
   padding:15px;
   font-size:13.5px;
   letter-spacing:0.1em;
-  border-radius:2px;
+  border-radius:30px;
   font-family:'Noto Serif KR', serif;
   font-weight:500;
   cursor:pointer;
+  box-shadow: 0px 4px 14px rgba(192,133,82, 0.28);
 }
 .rsvp-submit:active{ opacity:0.85; }
 .gb-list{
