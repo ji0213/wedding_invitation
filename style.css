@@ -760,9 +760,10 @@ footer{
 .share-btn.kakao{
   display:flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   width: 100%;
-  margin:0 auto 10 px;
+  margin:0 auto 10px;
   background: #F3EAC5;
   color:var(--ink);
   border: none;
