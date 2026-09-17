@@ -575,23 +575,24 @@ section{
   text-align:center;
 }
 .gift-btn{
-  display:inline-block;
+  display:inline-flex;
   background:none;
-  border:1px solid var(--line);
-  color:rgba(68, 54, 38, 0.75);
+  align-items: center;
+  border:1px solid var(--apricot);
+  color:var(--apricot-soft);
   padding:13px 26px;
   font-size:13px;
-  letter-spacing:0.08em;
-  border-radius:2px;
+  letter-spacing:0.06em;
+  border-radius:30px;
   font-family:'Noto Serif KR', serif;
   cursor:pointer;
 }
 .gift-panel{
   max-height:0;
   overflow:hidden;
-  transition:max-height 0.5s ease;
+  transition:max-height 0.25s ease;
 }
-.gift-panel.open{ max-height:600px; margin-top:24px; }
+.gift-panel.open{ max-height:420px; margin-top:24px; }
 .acc-item{
   background: rgb(255, 255, 255, 0.6);
   border: none;
