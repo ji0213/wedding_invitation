@@ -203,7 +203,7 @@ loadGuestbook();
             position: coords,
             content: overlayContent,
             yAnchor: 2.2
-          })
+          });
         });
       });
     }catch(err){
