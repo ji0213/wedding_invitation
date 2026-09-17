@@ -766,12 +766,12 @@ footer{
   background: #F3EAC5;
   color:var(--ink);
   border: none;
-  padding: 13px 26px;
+  padding: 17px 26px;
   font-size: 13px;
   letter-spacing: 0.08em;
   border-radius: 30px;
   font-family: 'Noto serif KR',serif;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 ::selection{ background:var(--apricot); color:var(--ink); }
