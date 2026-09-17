@@ -202,7 +202,7 @@ loadGuestbook();
             map: map,
             position: coords,
             content: overlayContent,
-            yAnchor: 3.2
+            yAnchor: 2.8
           });
         });
       });
