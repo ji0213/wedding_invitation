@@ -194,10 +194,16 @@ loadGuestbook();
             position: coords
           });
 
-          const label = document.createElement('dib');
-          label.className = 'map-label';
-          label.textContent = window.__VENUE_NAME||'';
-          mapBox.appendChild(label);
+          const overlayContent = document.createElement('div');
+          overlayContent.className = 'map-label';
+          overlayContent.textContent = window.__VENUE_NAME||'';
+
+          const cuctomOverlay = new kakao.map.CustomOverlay({
+            map: map,
+            position: coords,
+            content: overlayContent,
+            yAnchor: 2.2
+          })
         });
       });
     }catch(err){
