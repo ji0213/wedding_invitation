@@ -718,6 +718,20 @@ footer{
   letter-spacing:0.05em;
   line-height:1.9;
 }
+.share-btn.kakao{
+  display:block;
+  margin:0 auto 10 px;
+  background: #fee500;
+  color:#3c1e1e;
+  border: none;
+  padding: 13px 26px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  border-radius: 30px;
+  font-family: 'Noto serif KR',serif;
+  font-weight: 500;
+  cursor: pointer;
+}
 ::selection{ background:var(--apricot); color:var(--ink); }
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }

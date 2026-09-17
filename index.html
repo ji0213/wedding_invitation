@@ -200,6 +200,7 @@
     <p class="gb-empty" id="gbEmpty">아직 남겨진 메시지가 없어요.<br>첫 축하를 전해주세요 ♥</p>
   </section>
   <footer>
+    <button class="share=btn Kakao" onclick="shareKakao()">카카오톡 공유하기</button>
     <div class="footer-mark en">Jung-hee &amp; Ji-woo</div>
     <div class="footer-note">
         2027. 03. 13. 토요일 오후 1시<br>
@@ -219,6 +220,11 @@
 <script
   src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2fe07a242a9c0d0d443efabf6b81f72d&autoload=false&libraries=services"
   onerror="console.warn('카카오맵 SDK 로드 실패')">
+</script>
+<script>
+  if(window.Kakao && !Kakao.isInitialized()){
+    Kakao.init(window.__2fe07a242a9c0d0d443efabf6b81f72d);
+  }
 </script>
 <script src="script.js"></script>
 </body>
