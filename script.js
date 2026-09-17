@@ -307,7 +307,7 @@ function shareKakao(){
     return;
   }
   Kakao.Share.sendDefault({
-    ObjectType: 'feed',
+    objectType: 'feed',
     content: {
       title: '박정희♡최지우 결혼합니다',
       description: '2027.03.13 토요일 엔팰리스웨딩컨벤션',
@@ -317,7 +317,7 @@ function shareKakao(){
         webUrl: window.location.href
       }
     },
-    button: [
+    buttons: [
       {
         title : '청첩장 보기',
         link:{
