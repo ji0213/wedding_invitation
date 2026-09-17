@@ -1,22 +1,24 @@
-(function(){
-  var text = '박정희♡최지우 결혼합니다.'
-  var el = document.getElementById('openingText');
-  document.body.style.overflow='hidden';
-  [...text].forEach(function(ch,i){
-    var span = document.createElement('span');
-    span.className ='ch';
-    span.textContent = ch === ' ' ? '\u00A0' : ch;
-    el.appendChild(span);
-    setTimeout(function(){
-      span.classList.add('in');
-    }, 300 + i * 120);
-  });
-  var total = 300 + text.length * 120 + 900;
-  setTimeout(function(){
-    document.getElementById('openingOverlay').classList.add('hide');
-    document.body.style.overflow ='';
-  }, total);
-})();
+const openingText = "박정희♡최지우 결혼합니다.";
+const openingTarget = document.getElementById("typing-opening");
+const openingScreen = document.getElementById("opening-screen");
+
+let charCount = 0;
+const speed = 150;
+
+function playOpeningTyping() {
+  if (charCount < openingText.length) {
+    openingTarget.textContent += openingText.charAt(charCount);
+    charCount++;
+    setTimeout(playOpeningTyping, speed);
+  } else {
+    setTimeout(() => {
+      openingScreen.classList.add("fade-out");
+    }, 1000);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", playOpeningTyping);
+
 
 (function(){
   function setHeroHeight(){

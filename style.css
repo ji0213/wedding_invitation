@@ -21,43 +21,49 @@ body{
   color:var(--ink);
   overflow-x:hidden;
 }
-.opening-overlay{
-  position: fixed;
+/* 1. 오프닝 어두운 화면 스타일 */
+#opening-screen {
+   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.80) !important; 
-  z-index: 9999 !important; 
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.85); 
+  backdrop-filter: blur(5px); 
+  -webkit-backdrop-filter: blur(5px);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease-in-out;
-  
-}
-.opening-overlay.hide{
-  opacity: 0 !important;
-  pointer-events: none;
-}
-.opening-text{
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  letter-spacing: 0.15em;
-  color: #f3e9d8;
   text-align: center;
+  z-index: 99999;
+  transition: opacity 1s ease-in-out, visibility 1s;
 }
-.opening-text .ch{
-  display: inline-block !important;
-  opacity: 0 !important;
-  max-width: 0px !important;
-  overflow: hidden !important;
-  vertical-align: bottom;
-  transition: max-width 0.35s ease-in-out, opacity 0.2s ease-in-out !important;
+
+#typing-opening {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
-.opening-text .ch.in{
-   opacity: 1 !important;
-  max-width: 2em !important;
+
+
+#typing-opening::after {
+  content: '|';
+  animation: blink 0.6s step-end infinite;
 }
+
+@keyframes blink {
+  from, to { color: transparent }
+  50% { color: #ffffff; }
+}
+
+#opening-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .en{ font-family:'Cormorant Garamond', serif; }
 .wrap{
   max-width:480px;
