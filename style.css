@@ -410,6 +410,7 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 28px;
 }
 .cal-grid .sun{
   color:#c97a7a;
