@@ -402,6 +402,13 @@ section{
   font-size:13px;
   color:var(--ink);
   font-weight:300;
+  justify-items: center;
+}
+.cal-grid>*{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cal-grid .sun{
   color:#c97a7a;
