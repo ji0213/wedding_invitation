@@ -527,9 +527,9 @@ section{
 .map-link:active{
   transform: scale(0.96);
 }
-.map-link.naver{background: #afffdb;}
-.map-link.kakao{background: #f8f3c8;}
-.map-link.tmap{background: #ffc8e6;}
+.map-link.naver{background: #DDEDE4;}
+.map-link.kakao{background: #F3EAC5;}
+.map-link.tmap{background: #F0DDE3;}
 .map-icon{
   width: 17px;
   height: 17px;
