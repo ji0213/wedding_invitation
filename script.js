@@ -3,7 +3,26 @@ const openingTarget = document.getElementById("typing-opening");
 const openingScreen = document.getElementById("opening-screen");
 
 let charCount = 0;
-const speed = 150;
+const speed = 150; 
+
+function preventScroll(e) {
+  e.preventDefault();
+}
+
+function lockScroll() {
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('wheel', preventScroll, { passive: false });
+  window.addEventListener('touchmove', preventScroll, { passive: false });
+}
+
+function unlockScroll() {
+  window.removeEventListener('wheel', preventScroll);
+  window.removeEventListener('touchmove', preventScroll);
+  document.documentElement.style.removeProperty('overflow');
+  document.body.style.removeProperty('overflow');
+  openingScreen.style.display = 'none';
+}
 
 function playOpeningTyping() {
   if (charCount < openingText.length) {
@@ -13,11 +32,15 @@ function playOpeningTyping() {
   } else {
     setTimeout(() => {
       openingScreen.classList.add("fade-out");
+      setTimeout(unlockScroll, 1000); 
     }, 1000);
   }
 }
 
-document.addEventListener("DOMContentLoaded", playOpeningTyping);
+document.addEventListener("DOMContentLoaded", () => {
+  lockScroll();
+  playOpeningTyping();
+});
 
 
 (function(){

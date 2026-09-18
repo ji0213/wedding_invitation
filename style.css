@@ -121,15 +121,9 @@ body{
     opacity: 0;
   }
   8%{opacity: 0.9;}
-  25%{
-    transform: translate(calc(var(--sway)*0.6),25vh)rotate(90deg);
-  }
-  50%{
-    transform: translate(calc(var(--sway)*-0.8),50vh)rotate(180deg);
-  }
-  75%{
-    transform: translate(calc(var(--sway)*0.5),75vh)rotate(270deg);
-  }
+  25%{transform: translate(calc(var(--sway)*0.6),25vh)rotate(90deg);}
+  50%{transform: translate(calc(var(--sway)*-0.8),50vh)rotate(180deg);}
+  75%{transform: translate(calc(var(--sway)*0.5),75vh)rotate(270deg);}
   92%{opacity: 0.8;}
   100%{
     transform: translate(0,110vh) rotate(360deg);
@@ -255,8 +249,8 @@ section{
   color:rgba(74,65,55,0.7);
 }
 .side-photo{
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 200px;
   border-radius: 12px;
   object-fit: cover;
   display: block;
