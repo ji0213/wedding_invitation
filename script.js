@@ -84,23 +84,49 @@ function copyNum(btn, num){
 }
 
 function renderGuestbook(entries){
-  const list = document.getElementById('gbList');
+  const GB_PAGE_SIZE = 5;
+let gbAllEntries = [];
+let gbShownCount = 0;
+
+function renderGuestbook(entries){
+  gbAllEntries = entries || [];
+  gbShownCount = 0;
   const empty = document.getElementById('gbEmpty');
-  if(!entries || entries.length === 0){
-    list.innerHTML = '';
+
+  if(gbAllEntries.length === 0){
+    document.getElementById('gbList').innerHTML = '';
+    document.getElementById('gbMoreBtn').style.display = 'none';
     empty.style.display = 'block';
     return;
   }
+
   empty.style.display = 'none';
-  list.innerHTML = entries.map(entry => `
-    <div class="gb-card">
-      <div class="gb-card-head">
-        <span class="gb-card-name">${entry.name}</span>
-        <span class="gb-card-time">${entry.time}</span>
-      </div>
-      <div class="gb-card-msg">${entry.message}</div>
-    </div>
-  `).join('');
+  renderGbPage();
+}
+
+function renderGbPage(){
+  const list = document.getElementById('gbList');
+  const moreBtn = document.getElementById('gbMoreBtn');
+  const nextCount = Math.min(gbShownCount + GB_PAGE_SIZE, gbAllEntries.length);
+  const slice = gbAllEntries.slice(0, nextCount);
+
+  list.innerHTML = slice.map(entry => `
+<div class="gb-card">
+<div class="gb-card-head">
+<span class="gb-card-name">${entry.name}</span>
+<span class="gb-card-time">${entry.time}</span>
+</div>
+<div class="gb-card-msg">${entry.message}</div>
+</div>
+`).join('');
+
+  gbShownCount = nextCount;
+  moreBtn.style.display = gbShownCount < gbAllEntries.length ? 'block' : 'none';
+}
+
+function showMoreGuestbook(){
+  renderGbPage();
+}
 }
 
 function escapeHtml(str){
