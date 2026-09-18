@@ -126,7 +126,6 @@ function renderGbPage(){
 function showMoreGuestbook(){
   renderGbPage();
 }
-}
 
 function escapeHtml(str){
   const div = document.createElement('div');
