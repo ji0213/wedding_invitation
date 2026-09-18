@@ -576,6 +576,118 @@ section{
   object-fit: cover;
   flex-shrink: 0;
 }
+.accordion-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.accordion-header {
+  width: 100%;
+  background-color: #fcfcfc;
+  border: 1px solid #eaeaea;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #555555;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  transition: background 0.2s ease;
+}
+
+.accordion-header:active {
+  background-color: #f5f5f5;
+}
+
+.accordion-header .arrow-icon {
+  font-size: 11px;
+  color: #b2b2b2;
+  transition: transform 0.3s ease;
+}
+.accordion-header.active .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #ffffff;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.accordion-inner {
+  padding: 18px 20px 10px 20px;
+}
+
+.contact-box {
+  margin-bottom: 20px;
+}
+.contact-box:last-child {
+  margin-bottom: 5px;
+}
+
+.side-title {
+  font-size: 12px;
+  font-weight: 300;
+  color: #9a9a9a;
+  margin-bottom: 10px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f9f9f9;
+}
+.contact-row:last-child {
+  border-bottom: none;
+}
+
+.relation-name {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666666;
+}
+.parent-name {
+  font-weight: 400;
+  color: #444444;
+  margin-left: 6px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 5px;
+}
+.btn-action {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #666666;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+.btn-action:active {
+  background-color: #f7f7f7;
+  border-color: #d5d5d5;
+}
 
 .transit{
   margin-top:32px;
