@@ -346,6 +346,19 @@ loadGuestbook();
     if(e.key === 'ArrowRight' && current < lbSlides.length -1){current += 1; setPosition();}
   });
 })();
+function toggleAccordion(id) {
+  const content = document.getElementById(id);
+  const header = content.previousElementSibling;
+
+  header.classList.toggle('active');
+
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
+}
+
 function shareKakao(){
   if(!window.Kakao|| !Kakao.isInitialized()){
     alert('카카오 공유를 불러오지 못했어요. 잠시후 다시 시도해 주세요.');
