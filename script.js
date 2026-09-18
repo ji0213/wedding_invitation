@@ -83,8 +83,7 @@ function copyNum(btn, num){
   }
 }
 
-function renderGuestbook(entries){
-  const GB_PAGE_SIZE = 5;
+const GB_PAGE_SIZE = 5;
 let gbAllEntries = [];
 let gbShownCount = 0;
 
