@@ -59,12 +59,29 @@ const io = new IntersectionObserver((entries)=>{
 els.forEach(el=>io.observe(el));
 
 
-(function(){
-  const target = new Date('2027-03-13T13:00:00');
-  const now = new Date();
-  const diff = Math.ceil((target - now) / (1000*60*60*24));
-  document.querySelector('#countdown .num').textContent = diff > 0 ? diff : 'D-Day';
-})();
+function countDday() {
+    const weddingDate = new Date("2027-03-13T13:00:00+09:00");
+    const today = new Date();
+    const difference = weddingDate - today;
+    const dDay = Math.ceil(difference / (1000 * 60 * 60 * 24));
+    const dDayElement = document.getElementById("d-day-count");
+    
+    if (dDayElement) {
+        let resultText = "";
+        
+        if (dDay > 0) {
+            resultText = `${dDay}일 결혼식까지 남은 날`;
+        } else if (dDay === 0) {
+            resultText = `오늘 결혼식 당일입니다! 🎉`;
+        } else {
+            resultText = `결혼식이 ${Math.abs(dDay)}일 지났습니다.`;
+        }
+        dDayElement.parentElement.innerHTML = `<span id="d-day-count"></span>${resultText}`;
+    }
+}
+
+// 페이지가 로드될 때 함수 실행
+window.addEventListener("DOMContentLoaded", countDday);
 
 function toggleGift(){
   document.getElementById('giftPanel').classList.toggle('open');

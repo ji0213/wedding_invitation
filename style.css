@@ -611,9 +611,9 @@ section{
 .countdown{
   margin-top:40px;
   text-align:center;
-  font-size:13px;
+  font-size:18px;
   letter-spacing:0.08em;
-  color:rgba(74,65,55,0.6);
+  color:rgba(17, 15, 13, 0.6);
 }
 .countdown .num{
   font-family:'Cormorant Garamond', serif;
