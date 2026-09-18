@@ -59,7 +59,7 @@ body{
   from, to { border-color: transparent }
   50% { border-color: #ffffff; }
 }
-}
+
 
 #opening-screen.fade-out {
   opacity: 0;
