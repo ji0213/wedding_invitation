@@ -77,49 +77,44 @@
     </div>
   </section>
   <section>
-  <div class="accordion-container">
-    <button class="accordion-header" onclick="toggleAccordion('parent-contact')">
-      <span>혼주에게 연락하기</span>
-      <span class="arrow-icon">▼</span>
-    </button>
-    <div id="parent-contact" class="accordion-content">
-      <div class="accordion-inner">
-        <div class="contact-box groom-side">
-          <p class="side-title">신랑 측 혼주</p>
-          <div class="contact-row">
-            <span class="relation-name">아버지 <b>박종열</b></span>
-            <div class="action-buttons">
-              <a href="tel:01023576719" class="btn call-btn">📞 전화</a>
-              <a href="sms:01023576719" class="btn sms-btn">💬 문자</a>
-            </div>
-          </div>
-          <div class="contact-row">
-            <span class="relation-name">어머니 <b>김미자</b></span>
-            <div class="action-buttons">
-              <a href="tel:01023626719" class="btn call-btn">📞 전화</a>
-              <a href="sms:01023626719" class="btn sms-btn">💬 문자</a>
-            </div>
+  <div class="kicker reveal">Contact</div>
+  <div class="divider reveal"></div>
+  <div class="gift-toggle reveal">
+    <button class="gift-btn" onclick="toggleContact()">혼주에게 연락하기</button>
+    <div class="gift-panel" id="contactPanel">
+      <div class="acc-item">
+        <div class="acc-who">신랑측</div>
+        <div class="acc-num">
+          <span>아버지 박종열</span>
+          <div class="contact-btns">
+            <a href="tel:01023576719" class="contact-btn" aria-label="전화"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.9c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1z"/></svg></a>
+            <a href="sms:01023576719" class="contact-btn" aria-label="문자"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4z"/></svg></a>
           </div>
         </div>
-
-        <div class="contact-box bride-side">
-          <p class="side-title">신부 측 혼주</p>
-          <div class="contact-row">
-            <span class="relation-name">아버지 <b>최정태</b></span>
-            <div class="action-buttons">
-              <a href="tel:01039460229" class="btn call-btn">📞 전화</a>
-              <a href="sms:01039460229" class="btn sms-btn">💬 문자</a>
-            </div>
-          </div>
-          <div class="contact-row">
-            <span class="relation-name">어머니 <b>김은숙</b></span>
-            <div class="action-buttons">
-              <a href="tel:01080010877" class="btn call-btn">📞 전화</a>
-              <a href="sms:01080010877" class="btn sms-btn">💬 문자</a>
-            </div>
+        <div class="acc-num">
+          <span>어머니 김미자</span>
+          <div class="contact-btns">
+            <a href="tel:01023626719" class="contact-btn" aria-label="전화"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.9c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1z"/></svg></a>
+            <a href="sms:01023626719" class="contact-btn" aria-label="문자"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4z"/></svg></a>
           </div>
         </div>
-
+      </div>
+      <div class="acc-item">
+        <div class="acc-who">신부측</div>
+        <div class="acc-num">
+          <span>아버지 최정태</span>
+          <div class="contact-btns">
+            <a href="tel:01083538206" class="contact-btn" aria-label="전화"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.9c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1z"/></svg></a>
+            <a href="sms:01083538206" class="contact-btn" aria-label="문자"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4z"/></svg></a>
+          </div>
+        </div>
+        <div class="acc-num">
+          <span>어머니 김은숙</span>
+          <div class="contact-btns">
+            <a href="tel:01080010877" class="contact-btn" aria-label="전화"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.9c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1z"/></svg></a>
+            <a href="sms:01080010877" class="contact-btn" aria-label="문자"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4z"/></svg></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

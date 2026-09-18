@@ -69,7 +69,9 @@ els.forEach(el=>io.observe(el));
 function toggleGift(){
   document.getElementById('giftPanel').classList.toggle('open');
 }
-
+function toggleContact(){
+  document.getElementById('contactPanel').classList.toggle('open');
+}
 function copyNum(btn, num){
   if(navigator.clipboard){
     navigator.clipboard.writeText(num).then(()=>{
