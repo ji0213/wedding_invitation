@@ -21,7 +21,6 @@ body{
   color:var(--ink);
   overflow-x:hidden;
 }
-/* 1. 오프닝 어두운 화면 스타일 */
 #opening-screen {
    position: fixed;
   top: 0;
@@ -46,17 +45,20 @@ body{
   font-weight: 300;
   letter-spacing: 1px;
   white-space: nowrap;
+  padding-right: 3px; 
+  border-right: 2px solid #ffffff; 
+  animation: blink 0.6s step-end infinite;
 }
 
 
 #typing-opening::after {
-  content: '|';
-  animation: blink 0.6s step-end infinite;
+  display: none !important;
 }
 
 @keyframes blink {
-  from, to { color: transparent }
-  50% { color: #ffffff; }
+  from, to { border-color: transparent }
+  50% { border-color: #ffffff; }
+}
 }
 
 #opening-screen.fade-out {
