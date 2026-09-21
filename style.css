@@ -1007,6 +1007,10 @@ footer{
   border: 1px solid #e3d6bc;
   border-radius: 4px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  padding: 40px 28px;
+  width: 88%;
+  max-width: 320px;
+  text-align: center;
 }
 .rsvp-popup-close{
   position: absolute;
@@ -1019,35 +1023,37 @@ footer{
   cursor: pointer;
 }
 .rsvp-popup-icon{
-  font-size: 20px;
+  font-size: 22px;
   color: var(--apricot);
-  margin-bottom: 6px;
+  margin-bottom:14px;
 }
 .rsvp-popup-title{
   font-family: 'Noto Serif KR', serif;
   font-size: 16px;
   color: var(--ink);
   font-weight: 500;
-  margin-bottom: 0 0 6px;
+  margin-bottom: 8px;
 }
 .rsvp-popup-desc{
-  font-size: 12px;
+  font-size: 12.5px;
   color: #a08e6e;
-  line-height: 1.6;
-  margin-bottom: 0 0 20px;
+  line-height: 1.8;
+  margin-bottom: 28px;
 }
 #rsvpPopupForm .form{
   flex-direction: left;
   margin-bottom: 16px;
 }
 #rsvpPopupForm .field{
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 #rsvpPopupForm label{
   font-size: 11px;
   color: #a08e6e;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
 }
 #rsvpPopupForm input[type="text"],
 #rsvpPopupForm input[type="number"]{
@@ -1057,7 +1063,7 @@ footer{
   padding: 9px 10px;
   border: 1px solid #e3d6bc;
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ink);
 }
 #rsvpPopupForm input[type="number"]{
@@ -1094,7 +1100,7 @@ footer{
   background: var(--apricot);
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 30px;
   padding: 12px 0;
   font-size: 13px;
   letter-spacing: 0.03em;
