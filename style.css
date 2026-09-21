@@ -981,9 +981,13 @@ footer{
 }
 .rsvp-popup{
   position: flex;
-  inset: 0;
-  z-index: 90;
-  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--hero-vh,100vh);
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;

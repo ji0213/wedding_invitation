@@ -444,6 +444,8 @@ document.body.style.overflow = 'hidden';
 
 function closeRsvpPopup(){
   document.getElementById('rsvpPopup').classList.remove('show');
+  document.documentElement.style.removeProperty('overflow');
+  document.body.style.removeProperty('overflow')
 }
 function scrollToRsvp(){
   closeRsvpPopup();
