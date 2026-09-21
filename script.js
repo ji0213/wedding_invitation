@@ -436,3 +436,19 @@ function shareKakao(){
     ]
   });
 }
+document.body.style.overflow = 'hidden';
+function openInvitation(){
+  document.getElementById('openingScreen').classList.add('hide');
+  document.body.style.overflow='';
+  setTimeout(()=>{
+    document.getElementById('rsvpPopup').classList.add('show');
+  },800);
+}
+setTimeout(openInvitation,2000);
+function closeRsvpPopup(){
+  document.getElementById('rsvpPopup').classList.remove('show');
+}
+function scrollToRsvp(){
+  closeRsvpPopup();
+  document.getElementById('rsvpSection').scrollIntoView({behavior:'smooth'});
+}

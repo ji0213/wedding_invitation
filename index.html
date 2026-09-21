@@ -22,7 +22,15 @@
     <h1 id="typing-opening"></h1>
   </div>
 </div>
-
+<div id="rsvpPopup" class="rsvp-popup">
+  <div class="rsvp-popup-inner">
+    <button class="rsvp-popup-close" onclick="closeRsvpPopup()">×</button>
+    <p class="rsvp-popup-title">참석 여부를 알려주세요</p>
+    <p class="rsvp-popup-desc">준비를 위해 알려주시면<br>큰 도움이 됩니다.</p>
+    <button class="rsvp-popup-btn" onclick="scrollRsvp()">참석 여부 남기기</button>
+    <button class="rsvp-popup-later" onclick="closeRsvpPopup()">나중에 하기</button>
+  </div>
+</div>
 <div id="main-content">
 </div>
 
@@ -290,7 +298,7 @@
   </footer>
 </div>
 <script>
-  window.__GUESTBOOK_API_URL = 'https://script.google.com/macros/s/AKfycbwVfBjk7eGmkplWFV45bnKRDrVOF5vZNfPE9AxYm93NfpnqlRaMxBWAmLizW7wuzfQZ2Q/exec';
+  window.__GUESTBOOK_API_URL = 'https://script.google.com/macros/s/AKfycbxEE423LaUkpO1oAzz6RyyUNkT5_ablA5hs6cunaSHhI6XtcFcDac1mSckUbuz0SLsyyg/exec';
 </script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
 <script>

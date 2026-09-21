@@ -961,7 +961,83 @@ footer{
 #gbMoreBtn{
   display: block;
 }
-
+.ning-screen{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #fbf6ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.opening-screen.hide{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.opening-inner{
+  text-align: center;
+}
+.rsvp-popup{
+  position: flex;
+  inset: 0;
+  z-index: 90;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: opacity 0.3s ease, visibility 0.3s ease;
+}
+.rsvp-popup.show{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.rsvp-popup-inner{
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 24px;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+}
+.rsvp-popup-close{
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  border: none;
+  background: none;
+  color:#999;
+  font-size: 20px;
+  cursor: pointer;
+}
+.rsvp-popup-btn{
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--apricot);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.rsvp-popup-later{
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  background: none;
+  color: #999;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
 ::selection{ background:var(--apricot); color:var(--ink); }
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
