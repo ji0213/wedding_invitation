@@ -1130,7 +1130,7 @@ footer{
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
-@kayframes spin{
+@keyframes spin{
   to {transform: rotate(360deg);}
 }
 ::selection{ background:var(--apricot); color:var(--ink); }
