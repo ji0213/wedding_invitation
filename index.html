@@ -46,7 +46,10 @@
         <label>동행 인원(본인 포함)</label>
         <input type="number" id="rsvpCount" min="1" value="1">
       </div>
-    <button type="submit" class="rsvp-popup-btn">참석 여부 전달하기</button>
+    <button type="submit" class="rsvp-popup-btn">
+      <span id="rsvpBtnText">참석 여부 전달하기</span>
+      <span id="rsvpSpinner" class="btn-spinner" style="display: none;"></span>
+    </button>
     </form>
     <button class="rsvp-popup-later" onclick="closeRsvpPopup()">나중에 하기</button>
   </div>

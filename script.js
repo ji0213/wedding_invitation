@@ -464,6 +464,7 @@ window.submitRSVP = async function(e) {
   if(submitBtn){
     submitBtn.disabled = true;
     submitBtn.textContent = '전달중...';
+    spinner.style.display = 'inline-block';
   }
   try{
     await fetch(RSVP_API_URL, {
@@ -473,6 +474,7 @@ window.submitRSVP = async function(e) {
     });
     document.getElementById('rsvpPopupForm').reset();
     alert('참석 여부가 전달되었습니다. 감사합니다!');
+    closeRsvpPopup();
   }catch(err){
     console.error('참석 여부 전송 실패:', err);
     alert('참석 여부 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
@@ -480,6 +482,7 @@ window.submitRSVP = async function(e) {
     if(submitBtn){
       submitBtn.disabled = false;
       submitBtn.textContent = '참석 여부 전달하기';
+      spinner.style.display = 'none';
     }
   }
 }

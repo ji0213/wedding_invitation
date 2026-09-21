@@ -1066,6 +1066,10 @@ footer{
   font-size: 14px;
   color: var(--ink);
 }
+#rsvpPopupForm input[type="number"]::-webkit-outer-spin-button,
+#rsvpPopupForm input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
 #rsvpPopupForm input[type="number"]{
   text-align: center;
 }
@@ -1105,7 +1109,10 @@ footer{
   font-size: 13px;
   letter-spacing: 0.03em;
   margin-bottom: 12px;
-  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .rsvp-popup-later{
   background: none;
@@ -1114,6 +1121,17 @@ footer{
   font-size: 13px;
   text-decoration: none;
   cursor: pointer;
+}
+.btn-spinner{
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(225, 225, 225, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@kayframes spin{
+  to {transform: rotate(360deg);}
 }
 ::selection{ background:var(--apricot); color:var(--ink); }
 @media (prefers-reduced-motion: reduce){
