@@ -980,7 +980,7 @@ footer{
   text-align: center;
 }
 .rsvp-popup{
-  position: fiexd;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
