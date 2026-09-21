@@ -418,7 +418,7 @@ function shareKakao(){
     objectType: 'feed',
     content: {
       title: '박정희♡최지우 결혼합니다',
-      description: '2027.03.13 토요일 엔팰리스웨딩컨벤션',
+      description: '2027.03.13 토요일 1시 엔팰리스웨딩컨벤션',
       imageUrl: 'https://ji0213.github.io/wedding_invitation/image/asd.png',
       link: {
         mobileWebUrl:window.location.href,
