@@ -1130,6 +1130,9 @@ footer{
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
+#rsvpBtnText{
+  margin-right: 6px;
+}
 @keyframes spin{
   to {transform: rotate(360deg);}
 }
