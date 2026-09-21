@@ -454,18 +454,21 @@ window.submitRSVP = async function(e) {
   const name = escapeHtml(document.getElementById('rsvpName').value.trim());
   const attend = document.querySelector('input[name="attend"]:checked').value;
   const count = document.getElementById('rsvpCount').value;
-  if(!name)return;
+  if(!name) return;
 
   if(!RSVP_API_URL){
     alert('참석 여부 연동이 아직 설정되지 않았어요.');
     return;
   }
-  const submitBtn = document.querySelector('#rsvpPopupForm.rsvp-popup-btn');
-  if(submitBtn){
-    submitBtn.disabled = true;
-    submitBtn.textContent = '전달중...';
-    spinner.style.display = 'inline-block';
-  }
+
+  const submitBtn = document.getElementById('rsvpSubmitBtn');
+  const btnText = document.getElementById('rsvpBtnText');
+  const spinner = document.getElementById('rsvpSpinner');
+
+  submitBtn.disabled = true;
+  btnText.textContent = '전달 중';
+  spinner.style.display = 'inline-block';
+
   try{
     await fetch(RSVP_API_URL, {
       method: 'POST',
@@ -479,10 +482,8 @@ window.submitRSVP = async function(e) {
     console.error('참석 여부 전송 실패:', err);
     alert('참석 여부 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
   }finally{
-    if(submitBtn){
-      submitBtn.disabled = false;
-      submitBtn.textContent = '참석 여부 전달하기';
-      spinner.style.display = 'none';
-    }
+    submitBtn.disabled = false;
+    btnText.textContent = '참석 여부 전달하기';
+    spinner.style.display = 'none';
   }
 }
