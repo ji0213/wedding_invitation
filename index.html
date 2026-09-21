@@ -25,9 +25,29 @@
 <div id="rsvpPopup" class="rsvp-popup">
   <div class="rsvp-popup-inner">
     <button class="rsvp-popup-close" onclick="closeRsvpPopup()">×</button>
+    <div class="rsvp-popup-icon">♥</div>
     <p class="rsvp-popup-title">참석 여부를 알려주세요</p>
     <p class="rsvp-popup-desc">준비를 위해 알려주시면<br>큰 도움이 됩니다.</p>
-    <button class="rsvp-popup-btn" onclick="scrollTORsvp()">참석 여부 남기기</button>
+    <form class="rsvpPopupForm" onsubmit="submitRSVP(event)" style="text-align: lefg; margin-top: 16px;">
+      <div class="field">
+        <label>성함</label>
+        <input type="text" id="rsvpName" required placeholder="성함을 입력해주세요">
+      </div>
+      <div class="field">
+        <label>참석 여부</label>
+        <div style="display:flex; gap: 16px; margin-top: 6px;">
+          <input type="radio" name="attend" id="attendYes" value="참석" chekcked>
+          <label for="attendYes">참석</label>
+          <input type="radio" name="attend" id="attendNo" value="불참">
+          <label for="attendNo">불참</label>
+        </div>
+      </div>
+      <div class="field">
+        <label>동행 인원(본인 포함)</label>
+        <input type="number" id="rsvpCount" min="1" value="1">
+      </div>
+    <button type="submit" class="rsvp-popup-btn">참석 여부 전달하기</button>
+    </form>
     <button class="rsvp-popup-later" onclick="closeRsvpPopup()">나중에 하기</button>
   </div>
 </div>
@@ -299,6 +319,7 @@
 </div>
 <script>
   window.__GUESTBOOK_API_URL = 'https://script.google.com/macros/s/AKfycbxEE423LaUkpO1oAzz6RyyUNkT5_ablA5hs6cunaSHhI6XtcFcDac1mSckUbuz0SLsyyg/exec';
+  window.__RSVP_API_URL = 'https://script.google.com/macros/s/AKfycbxEE423LaUkpO1oAzz6RyyUNkT5_ablA5hs6cunaSHhI6XtcFcDac1mSckUbuz0SLsyyg/exec';
 </script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
 <script>
