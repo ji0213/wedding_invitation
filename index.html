@@ -28,7 +28,7 @@
     <div class="rsvp-popup-icon">♥</div>
     <p class="rsvp-popup-title">참석 여부를 알려주세요</p>
     <p class="rsvp-popup-desc">준비를 위해 알려주시면<br>큰 도움이 됩니다.</p>
-    <form class="rsvpPopupForm" onsubmit="submitRSVP(event)" style="text-align: lefg; margin-top: 16px;">
+    <form id="rsvpPopupForm" onsubmit="submitRSVP(event)" style="text-align: left; margin-top: 16px;">
       <div class="field">
         <label>성함</label>
         <input type="text" id="rsvpName" required placeholder="성함을 입력해주세요">
@@ -36,7 +36,7 @@
       <div class="field">
         <label>참석 여부</label>
         <div class="attend-toggle">
-          <input type="radio" name="attend" id="attendYes" value="참석" chekcked>
+          <input type="radio" name="attend" id="attendYes" value="참석" checked>
           <label for="attendYes">참석</label>
           <input type="radio" name="attend" id="attendNo" value="불참">
           <label for="attendNo">불참</label>

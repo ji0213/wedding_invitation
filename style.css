@@ -1002,6 +1002,7 @@ footer{
   pointer-events: auto;
 }
 .rsvp-popup-inner{
+  position: relative;
   background: #fbf6ee;
   border: 1px solid #e3d6bc;
   border-radius: 4px;
@@ -1037,6 +1038,9 @@ footer{
 }
 #rsvpPopupForm .form{
   flex-direction: left;
+  margin-bottom: 16px;
+}
+#rsvpPopupForm .field{
   margin-bottom: 16px;
 }
 #rsvpPopupForm label{
