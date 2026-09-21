@@ -1076,6 +1076,7 @@ footer{
   color:#a08e6e;
   margin: 0;
   cursor: pointer;
+  white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 .attend-toggle input[type="radio"]:checked + label{
