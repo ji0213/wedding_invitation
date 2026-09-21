@@ -980,7 +980,7 @@ footer{
   text-align: center;
 }
 .rsvp-popup{
-  position: flex;
+  position: fiexd;
   top: 0;
   left: 0;
   right: 0;
@@ -994,7 +994,7 @@ footer{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .rsvp-popup.show{
   opacity: 1;
