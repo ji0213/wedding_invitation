@@ -19,8 +19,6 @@ function lockScroll() {
 function unlockScroll() {
   window.removeEventListener('wheel', preventScroll);
   window.removeEventListener('touchmove', preventScroll);
-  document.documentElement.style.removeProperty('overflow');
-  document.body.style.removeProperty('overflow');
   openingScreen.style.display = 'none';
 
   setTimeout(() =>{

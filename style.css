@@ -266,6 +266,12 @@ section{
   color:var(--apricot-soft);
   margin-bottom:6px;
 }
+.groom-bride-btns{
+  display:flex;
+  gap: 8px;
+  justify-content:center;
+  margin-top: 10px;
+}
 .accordion-container {
   width: 100%;
   max-width: 400px;
