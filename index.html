@@ -243,7 +243,7 @@
         <div class="transit-label">🚈SRT / 지하철 이용 시</div>
         <div class="transit-body">
           평택지제역 1번출구에서 도보 665m (도보 10분)<br>
-          * 큰대로변 우측 버스정류장에서 셔틀버스 이용 가능
+          * 큰 대로변 우측 버스정류장에서 셔틀버스 이용 가능
         </div>
       </div>
     </div>
@@ -295,6 +295,27 @@
     </div>
   </section>
   <section>
+    <div class="kicker reveal">Photobook</div>
+    <div class="divider reveal"></div>
+    <div class="rsvp-desc reveal">직접 찍으신 사진을<br>저희에게 공유해주세요!</div>
+    <form id="photoUploadForm" onsubmit="uploadPhotos(event)" >
+      <div class="field">
+        <label>성함</label>
+        <input type="text" id="uploaderName" required placeholder="이름을 입력해주세요">
+      </div>
+      <div class="field">
+        <label>사진 선택(여러 장 가능)</label>
+        <input type="file" id="photoFiles" accept="image/*" multiple>
+      </div>
+      <button type="submit" class="rsvp-submit" id="photoUploadBtn">사진 업로드</button>
+      </form>
+      <p id="photoUploadStatus" style="margin-top: 12px;
+      font-size: 12px;
+      text-align: center;
+      color: var(--apricot-soft);"></p>
+  </section>
+  
+  <section>
     <div class="kicker reveal">Guestbook</div>
     <div class="divider reveal"></div>
     <p class="rsvp-desc reveal">따뜻한 축하 한마디<br>남겨주시면 큰 힘이 됩니다.</p>
@@ -313,6 +334,7 @@
     <button class="gift-btn" id="gbMoreBtn" style="display: none; margin: 20px auto 0;" onclick="showMoreGuestbook()">더보기</button>
     <p class="gb-empty" id="gbEmpty">아직 남겨진 메시지가 없어요.<br>첫 축하를 전해주세요 ♥</p>
   </section>
+
   <footer>
     <button class="share-btn kakao" onclick="shareKakao()">
       <span class="kakao-icon">
@@ -329,8 +351,9 @@
   </footer>
 </div>
 <script>
-  window.__GUESTBOOK_API_URL = 'https://script.google.com/macros/s/AKfycbzvfqi2Z5vqrHHgD2LWl9A8OfTjXEIuuTMixEgoj8fSJJqqtW_t3qYDKmBv-8ElsOrp/exec';
-  window.__RSVP_API_URL = 'https://script.google.com/macros/s/AKfycbzvfqi2Z5vqrHHgD2LWl9A8OfTjXEIuuTMixEgoj8fSJJqqtW_t3qYDKmBv-8ElsOrp/exec';
+  window.__GUESTBOOK_API_URL = 'https://script.google.com/macros/s/AKfycbyEf-sC7UvWU_rjtavVPiiQU7Uyl2NMCsxr8Hk7X_mzDoeCsT-XrLLqUlgSux4jzFe7PA/exec';
+  window.__RSVP_API_URL = 'https://script.google.com/macros/s/AKfycbyEf-sC7UvWU_rjtavVPiiQU7Uyl2NMCsxr8Hk7X_mzDoeCsT-XrLLqUlgSux4jzFe7PA/exec';
+  window.__PHOTO_API_URL = 'https://script.google.com/macros/s/AKfycbyEf-sC7UvWU_rjtavVPiiQU7Uyl2NMCsxr8Hk7X_mzDoeCsT-XrLLqUlgSux4jzFe7PA/exec';
 </script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
 <script>

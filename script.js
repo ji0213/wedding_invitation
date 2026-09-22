@@ -485,3 +485,53 @@ window.submitRSVP = async function(e) {
     spinner.style.display = 'none';
   }
 }
+const PHOTO_API_URL = window.__PHOTO_API_URL || '';
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader, result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+window.uploadPhotos = async function(e){
+  e.preventDefault();
+  const name = document.getElementById('uploaderName').value.trim();
+  const files = document.getElementById('photoFiles').files;
+  const status = document.getElementById('photoUploadStatus');
+  const btn = document.getElementById('photoUploadBtn');
+
+  if(!name || files.length === 0){
+    status.textContent = '이름과 사진을 선택해주세요.'
+    return;
+  }
+  if(!PHOTO_API_URL){
+    status.textContent = '업로드 연동이 아직 설정되지 않았어요.'
+    return;
+  }
+  btn.disabled = true;
+  for (let i=0; i<files.length; i++){
+    const file = files[i];
+    status.textContent = '업로드 중...(${i+1}/${files.length})';
+    try{
+      const fileData = await fileToBase64(file);
+      await fetch(PHOTO_API_URL,{
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ 
+          uploaderName:name,
+          fileName: file.name,
+          mimeType: file.type,
+          data: fileData })
+      });
+    }catch(err){
+      console.error('사진 업로드 실패:', err);
+      status.textContent = '사진 업로드에 실패했어요. 잠시 후 다시 시도해주세요.';
+      btn.disabled = false;
+      return;
+    }
+  }
+  status.textContent = '사진 업로드가 완료되었습니다. 감사합니다!';
+  document.getElementById('photoUploadForm').reset();
+  btn.disabled = false;
+};
