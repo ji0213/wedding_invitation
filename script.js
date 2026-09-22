@@ -512,7 +512,7 @@ window.uploadPhotos = async function(e){
   btn.disabled = true;
   for (let i=0; i<files.length; i++){
     const file = files[i];
-    status.textContent = '업로드 중...(${i+1}/${files.length})';
+    status.textContent = "업로드 중... ("+ {i+1} + "/" + files.length + ")";
     try{
       const fileData = await fileToBase64(file);
       await fetch(PHOTO_API_URL,{
