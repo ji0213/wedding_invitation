@@ -192,7 +192,7 @@ window.submitGuestbook = async function(e){
     await fetch(GB_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ name, message })
+      body: JSON.stringify({ type: 'guestbook', name, message })
     });
     document.getElementById('gbForm').reset();
 
@@ -471,7 +471,7 @@ window.submitRSVP = async function(e) {
     await fetch(RSVP_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ name, attend, count })
+      body: JSON.stringify({ type: 'rsvp', name, attend, count })
     });
     document.getElementById('rsvpPopupForm').reset();
     alert('참석 여부가 전달되었습니다. 감사합니다!');
@@ -522,7 +522,7 @@ window.uploadPhotos = async function(e){
           uploaderName:name,
           fileName: file.name,
           mimeType: file.type,
-          filedata: fileData })
+          fileData: fileData })
       });
     }catch(err){
       console.error('사진 업로드 실패:', err);
