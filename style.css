@@ -1136,6 +1136,93 @@ footer{
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
+.photo-dropzone{
+  border: 1.5px dashed #d6b98f;
+  border-radius: 8px;
+  padding: 28px 16px;
+  text-align: center;
+  background: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.photo-dropzone-icon{
+  font-size: 26px;
+  color: var(--apricot);
+  margin-bottom: 8px;
+}
+.photo-dropzone-title{
+  font-size: 13px;
+  color: var(--ink);
+  margin: 0 0 4px;
+  font-weight: 500;
+}
+.photo-dropzone-sub{
+  font-size: 11px;
+  color: rgba(74,65,55,0.45);
+  margin: 0;
+}
+
+.photo-preview-list{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.photo-preview-item{
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+.photo-preview-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  display: block;
+}
+.photo-preview-remove{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.photo-progress-wrap{
+  margin-bottom: 20px;
+}
+.photo-progress-bar{
+  height: 6px;
+  background: rgba(74,65,55,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.photo-progress-fill{
+  height: 100%;
+  width: 0%;
+  background: var(--apricot);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+.photo-progress-text{
+  text-align: center;
+  font-size: 11px;
+  color: var(--apricot-soft);
+  margin: 0;
+}
 #rsvpBtnText{
   margin-right: 6px;
 }

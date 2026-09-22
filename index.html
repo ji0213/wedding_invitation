@@ -295,25 +295,33 @@
     </div>
   </section>
   <section>
-    <div class="kicker reveal">Photobook</div>
-    <div class="divider reveal"></div>
-    <div class="rsvp-desc reveal">직접 찍으신 사진을<br>저희에게 공유해주세요!</div>
-    <form id="photoUploadForm" onsubmit="uploadPhotos(event)" >
-      <div class="field">
-        <label>성함</label>
-        <input type="text" id="uploaderName" required placeholder="이름을 입력해주세요">
-      </div>
-      <div class="field">
-        <label>사진 선택(여러 장 가능)</label>
-        <input type="file" id="photoFiles" accept="image/*" multiple>
-      </div>
-      <button type="submit" class="rsvp-submit" id="photoUploadBtn">사진 업로드</button>
-      </form>
-      <p id="photoUploadStatus" style="margin-top: 12px;
-      font-size: 12px;
-      text-align: center;
-      color: var(--apricot-soft);"></p>
-  </section>
+  <div class="kicker reveal">Photobook</div>
+  <div class="divider reveal"></div>
+  <p class="rsvp-desc reveal">결혼 식장에서 찍으신 사진을<br>저희에게 공유해주세요!</p>
+
+  <form id="photoUploadForm" class="rsvp-form" onsubmit="uploadPhotos(event)">
+    <div class="field">
+      <label>성함</label>
+      <input type="text" id="uploaderName" required placeholder="이름을 입력해주세요">
+    </div>
+
+    <div class="photo-dropzone" id="photoDropzone" onclick="document.getElementById('photoFiles').click()">
+      <div class="photo-dropzone-icon">📷</div>
+      <p class="photo-dropzone-title">사진을 선택해주세요</p>
+      <p class="photo-dropzone-sub">여러 장 한번에 선택 가능</p>
+      <input type="file" id="photoFiles" accept="image/*" multiple style="display:none;" onchange="renderPhotoPreviews()">
+    </div>
+
+    <div class="photo-preview-list" id="photoPreviewList"></div>
+
+    <div class="photo-progress-wrap" id="photoProgressWrap" style="display:none;">
+      <div class="photo-progress-bar"><div class="photo-progress-fill" id="photoProgressFill"></div></div>
+      <p class="photo-progress-text" id="photoProgressText"></p>
+    </div>
+
+    <button type="submit" class="rsvp-submit" id="photoUploadBtn">사진 올리기</button>
+  </form>
+</section>
   
   <section>
     <div class="kicker reveal">Guestbook</div>

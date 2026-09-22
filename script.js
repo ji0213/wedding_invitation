@@ -486,6 +486,8 @@ window.submitRSVP = async function(e) {
   }
 }
 const PHOTO_API_URL = window.__PHOTO_API_URL || '';
+let selectedPhotoFiles = [];
+
 function fileToBase64(file){
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -494,44 +496,87 @@ function fileToBase64(file){
     reader.readAsDataURL(file);
   });
 }
+
+window.renderPhotoPreviews = function(){
+  const input = document.getElementById('photoFiles');
+  selectedPhotoFiles = Array.from(input.files);
+  const list = document.getElementById('photoPreviewList');
+  list.innerHTML = '';
+
+  selectedPhotoFiles.forEach((file, index) => {
+    const url = URL.createObjectURL(file);
+    const item = document.createElement('div');
+    item.className = 'photo-preview-item';
+    item.innerHTML = `
+      <img src="${url}" alt="">
+      <button type="button" class="photo-preview-remove" onclick="removePhotoPreview(${index})">×</button>
+    `;
+    list.appendChild(item);
+  });
+};
+
+window.removePhotoPreview = function(index){
+  selectedPhotoFiles.splice(index, 1);
+  const dt = new DataTransfer();
+  selectedPhotoFiles.forEach(file => dt.items.add(file));
+  document.getElementById('photoFiles').files = dt.files;
+  renderPhotoPreviews();
+};
+
 window.uploadPhotos = async function(e){
   e.preventDefault();
   const name = document.getElementById('uploaderName').value.trim();
-  const files = document.getElementById('photoFiles').files;
-  const status = document.getElementById('photoUploadStatus');
   const btn = document.getElementById('photoUploadBtn');
+  const progressWrap = document.getElementById('photoProgressWrap');
+  const progressFill = document.getElementById('photoProgressFill');
+  const progressText = document.getElementById('photoProgressText');
 
-  if(!name || files.length === 0){
-    status.textContent = '이름과 사진을 선택해주세요.'
+  if(!name || selectedPhotoFiles.length === 0){
+    alert('이름과 사진을 선택해주세요.');
     return;
   }
   if(!PHOTO_API_URL){
-    status.textContent = '업로드 연동이 아직 설정되지 않았어요.'
+    alert('업로드 연동이 아직 설정되지 않았어요.');
     return;
   }
+
   btn.disabled = true;
-  for (let i=0; i<files.length; i++){
-    const file = files[i];
-    status.textContent = "업로드 중... ("+ (i+1)+ "/" + files.length + ")";
+  progressWrap.style.display = 'block';
+
+  for(let i = 0; i < selectedPhotoFiles.length; i++){
+    const file = selectedPhotoFiles[i];
+    const percent = Math.round(((i) / selectedPhotoFiles.length) * 100);
+    progressFill.style.width = percent + '%';
+    progressText.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
+
     try{
       const fileData = await fileToBase64(file);
-      await fetch(PHOTO_API_URL,{
+      const res = await fetch(PHOTO_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ 
-          uploaderName:name,
+        body: JSON.stringify({
+          uploaderName: name,
           fileName: file.name,
           mimeType: file.type,
-          fileData: fileData })
+          fileData: fileData
+        })
       });
+      const result = await res.json();
+      if(result.error){
+        throw new Error(result.error);
+      }
     }catch(err){
       console.error('사진 업로드 실패:', err);
-      status.textContent = '사진 업로드에 실패했어요. 잠시 후 다시 시도해주세요.';
+      progressText.textContent = '사진 업로드에 실패했어요. 잠시 후 다시 시도해주세요.';
       btn.disabled = false;
       return;
     }
   }
-  status.textContent = '사진 업로드가 완료되었습니다. 감사합니다!';
+
+  progressFill.style.width = '100%';
+  progressText.textContent = '업로드가 완료되었습니다. 감사합니다!';
+  selectedPhotoFiles = [];
+  document.getElementById('photoPreviewList').innerHTML = '';
   document.getElementById('photoUploadForm').reset();
   btn.disabled = false;
 };
