@@ -489,7 +489,7 @@ const PHOTO_API_URL = window.__PHOTO_API_URL || '';
 function fileToBase64(file){
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => resolve(reader, result);
+    reader.onload = () => resolve(reader.result);
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
@@ -512,7 +512,7 @@ window.uploadPhotos = async function(e){
   btn.disabled = true;
   for (let i=0; i<files.length; i++){
     const file = files[i];
-    status.textContent = "업로드 중... ("+ {i+1} + "/" + files.length + ")";
+    status.textContent = "업로드 중... ("+ (i+1)+ "/" + files.length + ")";
     try{
       const fileData = await fileToBase64(file);
       await fetch(PHOTO_API_URL,{
@@ -522,7 +522,7 @@ window.uploadPhotos = async function(e){
           uploaderName:name,
           fileName: file.name,
           mimeType: file.type,
-          data: fileData })
+          filedata: fileData })
       });
     }catch(err){
       console.error('사진 업로드 실패:', err);
