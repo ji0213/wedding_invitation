@@ -1240,6 +1240,10 @@ footer{
   border-radius: 4px;
   cursor: pointer;
 }
+body.scroll-locked{
+  touch-action: none;
+  overflow: hidden;
+}
 @keyframes spin{
   to {transform: rotate(360deg);}
 }
