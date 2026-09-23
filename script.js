@@ -17,8 +17,6 @@ function lockScroll() {
 }
 
 function unlockScroll() {
-  window.removeEventListener('wheel', preventScroll);
-  window.removeEventListener('touchmove', preventScroll);
   openingScreen.style.display = 'none';
 
   setTimeout(() =>{
@@ -442,6 +440,8 @@ document.body.style.overflow = 'hidden';
 
 function closeRsvpPopup(){
   document.getElementById('rsvpPopup').classList.remove('show');
+  window.removeEventListener('wheel',preventScroll);
+  window.removeEventListener('touchmove',preventScroll);
   document.documentElement.style.removeProperty('overflow');
   document.body.style.removeProperty('overflow')
 }
