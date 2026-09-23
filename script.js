@@ -525,14 +525,13 @@ window.removePhotoPreview = function(index){
 
 window.uploadPhotos = async function(e){
   e.preventDefault();
-  const name = document.getElementById('uploaderName').value.trim();
   const btn = document.getElementById('photoUploadBtn');
   const progressWrap = document.getElementById('photoProgressWrap');
   const progressFill = document.getElementById('photoProgressFill');
   const progressText = document.getElementById('photoProgressText');
 
   if(!name || selectedPhotoFiles.length === 0){
-    alert('이름과 사진을 선택해주세요.');
+    alert('사진을 선택해주세요.');
     return;
   }
   if(!PHOTO_API_URL){
@@ -555,7 +554,7 @@ window.uploadPhotos = async function(e){
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
-          uploaderName: name,
+          uploaderName: '익명',
           fileName: file.name,
           mimeType: file.type,
           fileData: fileData
