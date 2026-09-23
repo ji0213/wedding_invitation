@@ -12,7 +12,7 @@ function preventScroll(e) {
 function lockScroll() {
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
-  dpcument.body.classList.add('scroll-locked');
+  document.body.classList.add('scroll-locked');
   window.addEventListener('wheel', preventScroll, { passive: false });
   window.addEventListener('touchmove', preventScroll, { passive: false });
 }
