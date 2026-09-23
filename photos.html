@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#fbf6ee">
+<title>정희 · 지우 사진첩</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <section style="padding-top:60px;">
+    <div class="kicker reveal in">Photobook</div>
+    <div class="divider reveal in"></div>
+    <p class="rsvp-desc reveal in">하객분들이 남겨주신<br>소중한 사진들이에요.</p>
+
+    <div class="photo-gallery-grid" id="photoGalleryGrid"></div>
+    <p class="gb-empty" id="photoGalleryEmpty" style="display:none;">아직 업로드된 사진이 없어요.</p>
+  </section>
+</div>
+
+<script>
+  window.__PHOTO_API_URL = 'https://script.google.com/macros/s/AKfycbxEE423LaUkpO1oAzz6RyyUNkT5_ablA5hs6cunaSHhI6XtcFcDac1mSckUbuz0SLsyyg/exec';
+</script>
+<script src="photos.js"></script>
+</body>
+</html>
