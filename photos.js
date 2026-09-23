@@ -7,6 +7,7 @@ async function loadPhotoGallery(){
     const photos = await res.json();
     const grid = document.getElementById('photoGalleryGrid');
     const empty = document.getElementById('photoGalleryEmpty');
+    document.getElementById('photoLoadingText').style.display = 'none';
 
     if(photos.length === 0){
       grid.innerHTML = '';
@@ -14,7 +15,7 @@ async function loadPhotoGallery(){
       return;
     }
     empty.style.display = 'none';
-    grid.innerHTML = photos.map(p => `<img src="${p.url}" alt="" loading="lazy">`).join('');
+    grid.innerHTML = photos.map(p => `<img src="${p.url}" data-full="https://lh3.googleusercontent.com/d/${p.id}" alt="" loading="lazy">`).join('');
     setupLightbox();
   }catch(err){
     console.error('사진 목록을 불러오지 못했습니다:', err);
@@ -31,7 +32,7 @@ function setupLightbox(){
   lb.innerHTML = `
     <button class="lb-close" aria-label="닫기">&times;</button>
     <div class="lb-track">
-      ${imgs.map(img => `<div class="lb-slide"><img src="${img.src}" alt=""></div>`).join('')}
+      ${imgs.map(img => `<div class="lb-slide"><img src="${img.dataset.full}" alt=""></div>`).join('')}
     </div>
   `;
   document.body.appendChild(lb);
