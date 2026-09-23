@@ -530,7 +530,7 @@ window.uploadPhotos = async function(e){
   const progressFill = document.getElementById('photoProgressFill');
   const progressText = document.getElementById('photoProgressText');
 
-  if(!name || selectedPhotoFiles.length === 0){
+  if(selectedPhotoFiles.length === 0){
     alert('사진을 선택해주세요.');
     return;
   }

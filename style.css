@@ -1167,6 +1167,7 @@ footer{
   gap: 8px;
   margin-bottom: 20px;
   overflow-x: auto;
+  padding-top: 6px;
 }
 .photo-preview-item{
   position: relative;
