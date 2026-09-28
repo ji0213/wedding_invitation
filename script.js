@@ -93,9 +93,9 @@ function countDday() {
     
     if (beforeElement && numElement && afterElement) {
         if (dDay > 0) {
-            beforeElement.innerText = "";
+            beforeElement.innerText = "결혼식까지";
             numElement.innerText = dDay; 
-            afterElement.innerText = "일 결혼식까지 남은 날";
+            afterElement.innerText = "일 남았습니다.";
         } else if (dDay === 0) {
             beforeElement.innerText = "";
             numElement.innerText = ""; 
