@@ -9,7 +9,7 @@ function preventScroll(e) {
   const popup = document.getElementById('rsvPopup');
   const sheet = document.querySelector('.resv-popup-inner');
 
-  if(popup?.classList.contains('show')&&sheet?.contains(e.target)){
+  if(popup?.classList.contains('show') && sheet?.contains(e.target)){
     return;
   }
   e.preventDefault();
