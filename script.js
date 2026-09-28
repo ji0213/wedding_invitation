@@ -48,6 +48,8 @@ function unlockScroll() {
     document.body.style.removeProperty('position');
     document.body.style.removeProperty('top');
     document.body.style.removeProperty('width');
+
+    window.scrollTo(0, lockedScrollY);
     return;
   }
   setTimeout(() =>{
