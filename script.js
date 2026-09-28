@@ -6,6 +6,12 @@ let charCount = 0;
 const speed = 150; 
 
 function preventScroll(e) {
+  const popup = document.getElementById('rsvPopup');
+  const sheet = document.querySelector('.resv-popup-inner');
+
+  if(popup?.classList.contains('show')&&sheet?.contains(e.target)){
+    return;
+  }
   e.preventDefault();
 }
 
@@ -448,6 +454,71 @@ function shareKakao(){
   });
 }
 document.body.style.overflow = 'hidden';
+(function () {
+  const popup = document.getElementById('rsvpPopup');
+  const sheet = popup?.querySelector('.rsvp-popup-inner');
+
+  if (!popup || !sheet) return;
+
+  let startY = 0;
+  let currentY = 0;
+  let dragging = false;
+
+  const CLOSE_THRESHOLD = 120;
+
+  sheet.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    currentY = startY;
+    dragging = true;
+
+    sheet.style.transition = 'none';
+  }, { passive: true });
+
+  sheet.addEventListener('touchmove', (e) => {
+    if (!dragging) return;
+
+    currentY = e.touches[0].clientY;
+
+    const deltaY = currentY - startY;
+
+    if (deltaY <= 0) {
+      sheet.style.transform = 'translateY(0)';
+      return;
+    }
+
+    sheet.style.transform = `translateY(${deltaY}px)`;
+  }, { passive: true });
+
+  sheet.addEventListener('touchend', () => {
+    if (!dragging) return;
+
+    dragging = false;
+
+    const deltaY = currentY - startY;
+
+    if (deltaY > CLOSE_THRESHOLD) {
+      sheet.style.transition =
+        'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)';
+
+      sheet.style.transform = 'translateY(100%)';
+
+      setTimeout(() => {
+        closeRsvpPopup();
+        sheet.style.transform = '';
+        sheet.style.transition = '';
+      }, 250);
+    } else {
+      sheet.style.transition =
+        'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)';
+
+      sheet.style.transform = 'translateY(0)';
+
+      setTimeout(() => {
+        sheet.style.transition = '';
+      }, 250);
+    }
+  });
+})();
 
 function closeRsvpPopup(){
   document.getElementById('rsvpPopup').classList.remove('show');
