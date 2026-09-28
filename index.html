@@ -24,34 +24,44 @@
 </div>
 <div id="rsvpPopup" class="rsvp-popup">
   <div class="rsvp-popup-inner">
-    <button class="rsvp-popup-close" onclick="closeRsvpPopup()">×</button>
+    <div class="rsvp-sheet-handle"></div>
     <div class="rsvp-popup-icon">♥</div>
     <p class="rsvp-popup-title">참석 여부를 알려주세요</p>
-    <p class="rsvp-popup-desc">준비를 위해 알려주시면<br>큰 도움이 됩니다.</p>
-    <form id="rsvpPopupForm" onsubmit="submitRSVP(event)" style="text-align: left; margin-top: 16px;">
+    <p class="rsvp-popup-desc">준비를 위해 알려주시면 큰 도움이 됩니다</p>
+
+    <form id="rsvpPopupForm" onsubmit="submitRSVP(event)">
       <div class="field">
         <label>성함</label>
         <input type="text" id="rsvpName" required placeholder="성함을 입력해주세요">
       </div>
-      <div class="field">
-        <label>참석 여부</label>
-        <div class="attend-toggle">
-          <input type="radio" name="attend" id="attendYes" value="참석" checked>
-          <label for="attendYes">참석</label>
-          <input type="radio" name="attend" id="attendNo" value="불참">
-          <label for="attendNo">불참</label>
+
+      <div class="rsvp-row">
+        <div class="field rsvp-row-attend">
+          <label>참석 여부</label>
+          <div class="attend-toggle">
+            <input type="radio" name="attend" id="attendYes" value="참석" checked>
+            <label for="attendYes">참석</label>
+            <input type="radio" name="attend" id="attendNo" value="불참">
+            <label for="attendNo">불참</label>
+          </div>
+        </div>
+        <div class="field rsvp-row-count">
+          <label>인원</label>
+          <input type="number" id="rsvpCount" min="1" value="1">
         </div>
       </div>
-      <div class="field">
-        <label>동행 인원(본인 포함)</label>
-        <input type="number" id="rsvpCount" min="1" value="1">
-      </div>
-    <button type="submit" class="rsvp-popup-btn" id="rsvpSubmitBtn">
-      <span id="rsvpBtnText">참석 여부 전달하기</span>
-      <span id="rsvpSpinner" class="btn-spinner" style="display: none;"></span>
-    </button>
+
+      <button type="submit" class="rsvp-popup-btn" id="rsvpSubmitBtn">
+        <span id="rsvpBtnText">참석 여부 전달하기</span>
+        <span id="rsvpSpinner" class="btn-spinner" style="display: none;"></span>
+      </button>
     </form>
-    <button class="rsvp-popup-later" onclick="closeRsvpPopup()">나중에 하기</button>
+
+    <div class="rsvp-popup-links">
+      <button type="button" class="rsvp-popup-later" onclick="hideRsvpPopupToday()">오늘 하루 보지 않기</button>
+      <span class="rsvp-popup-divider"></span>
+      <button type="button" class="rsvp-popup-later" onclick="closeRsvpPopup()">나중에 하기</button>
+    </div>
   </div>
 </div>
 <div id="main-content">

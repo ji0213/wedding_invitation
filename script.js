@@ -20,6 +20,16 @@ function lockScroll() {
 function unlockScroll() {
   openingScreen.style.display = 'none';
 
+  const hiddenDate = localStorage.getItem('rsvpPopupHiddenDate');
+  const today = new Date().toDateString();
+  if(hiddenDate === today){
+    window.removeEventListener('wheel', preventScroll);
+    window.removeEventListener('touchmove', preventScroll);
+    document.body.classList.remove('scroll-locked');
+    document.documentElement.style.removeProperty('overflow');
+    document.body.style.removeProperty('overflow');
+    return;
+  }
   setTimeout(() =>{
     document.getElementById('rsvpPopup').classList.add('show');
   },500);
@@ -446,6 +456,11 @@ function closeRsvpPopup(){
   document.documentElement.style.removeProperty('overflow');
   document.body.style.removeProperty('overflow');
   document.body.classList.remove('scroll-locked');
+}
+function hideRsvpPopupToday(){
+  const today = new Date().toDateString();
+  localStorage.setItem('rsvpPopupHiddenDate', today);
+  closeRsvpPopup();
 }
 const RSVP_API_URL = window.__RSVP_API_URL ||'';
 

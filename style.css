@@ -985,6 +985,7 @@ footer{
 .opening-inner{
   text-align: center;
 }
+
 .rsvp-popup{
   position: fixed;
   top: 0;
@@ -995,7 +996,7 @@ footer{
   z-index: 200;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
@@ -1010,49 +1011,46 @@ footer{
 .rsvp-popup-inner{
   position: relative;
   background: #fbf6ee;
-  border: 1px solid #e3d6bc;
-  border-radius: 4px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  padding: 40px 28px;
-  width: 88%;
-  max-width: 320px;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  padding: 12px 24px 24px;
   text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.rsvp-popup-close{
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  border: none;
-  background: none;
-  color:#999;
-  font-size: 20px;
-  cursor: pointer;
+.rsvp-popup.show .rsvp-popup-inner{
+  transform: translateY(0);
+}
+.rsvp-sheet-handle{
+  width: 40px;
+  height: 4px;
+  background: #e3d6bc;
+  border-radius: 2px;
+  margin: 0 auto 18px;
 }
 .rsvp-popup-icon{
-  font-size: 22px;
+  font-size: 18px;
   color: var(--apricot);
-  margin-bottom:14px;
+  margin-bottom: 8px;
 }
 .rsvp-popup-title{
   font-family: 'Noto Serif KR', serif;
   font-size: 16px;
   color: var(--ink);
   font-weight: 500;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .rsvp-popup-desc{
-  font-size: 12.5px;
+  font-size: 12px;
   color: #a08e6e;
-  line-height: 1.8;
-  margin-bottom: 28px;
-}
-#rsvpPopupForm .form{
-  flex-direction: left;
-  margin-bottom: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
 }
 #rsvpPopupForm .field{
-  margin-bottom: 20px;
   text-align: left;
+  margin-bottom: 14px;
 }
 #rsvpPopupForm label{
   font-size: 11px;
@@ -1066,34 +1064,46 @@ footer{
   width: 100%;
   box-sizing: border-box;
   background: #fff;
-  padding: 9px 10px;
+  padding: 12px 14px;
   border: 1px solid #e3d6bc;
-  border-radius: 3px;
+  border-radius: 8px;
   font-size: 14px;
   color: var(--ink);
+}
+#rsvpPopupForm input[type="number"]{
+  text-align: center;
+  -moz-appearance: textfield;
 }
 #rsvpPopupForm input[type="number"]::-webkit-outer-spin-button,
 #rsvpPopupForm input[type="number"]::-webkit-inner-spin-button{
   -webkit-appearance: none;
+  margin: 0;
 }
-#rsvpPopupForm input[type="number"]{
-  text-align: center;
+
+.rsvp-row{
+  display: flex;
+  gap: 10px;
+}
+.rsvp-row-attend{ flex: 1; }
+.rsvp-row-count{ width: 88px; }
+#rsvpPopupForm .rsvp-row-count input{
+  padding: 11px 0;
 }
 .attend-toggle{
-  display:flex;
-  gap:8px;
+  display: flex;
+  gap: 6px;
 }
 .attend-toggle input[type="radio"]{
-  display:none;
+  display: none;
 }
-.attend-toggle label{
-  flex:1;
-  text-align:center;
-  padding:9px 0;
-  border:1px solid #e3d6bc;
-  border-radius:999px;
-  font-size:13px;
-  color:#a08e6e;
+#rsvpPopupForm .attend-toggle label{
+  flex: 1;
+  text-align: center;
+  padding: 11px 0;
+  border: 1px solid #e3d6bc;
+  border-radius: 999px;
+  font-size: 13px;
+  color: #a08e6e;
   margin: 0;
   cursor: pointer;
   white-space: nowrap;
@@ -1111,23 +1121,53 @@ footer{
   color: #fff;
   border: none;
   border-radius: 30px;
-  padding: 12px 0;
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  margin-bottom: 12px;
+  padding: 14px 0;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(192,133,82,0.28);
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.btn-spinner{
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+#rsvpBtnText{
+  margin-right: 8px;
+}
+
+.rsvp-popup-links{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
 .rsvp-popup-later{
   background: none;
-  color: #999;
   border: none;
-  font-size: 13px;
-  text-decoration: none;
+  color: #b8a888;
+  font-size: 12px;
+  padding: 6px 4px;
   cursor: pointer;
 }
+.rsvp-popup-divider{
+  width: 1px;
+  height: 12px;
+  background: #e3d6bc;
+}
+
 .btn-spinner{
   width: 16px;
   height: 16px;
