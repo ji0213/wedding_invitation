@@ -26,6 +26,10 @@ function lockScroll() {
 function unlockScroll() {
   openingScreen.style.display = 'none';
 
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  document.body.classList.add('scroll-locked');
+
   const hiddenDate = localStorage.getItem('rsvpPopupHiddenDate');
   const today = new Date().toDateString();
   if(hiddenDate === today){
