@@ -3,7 +3,7 @@ const openingTarget = document.getElementById("typing-opening");
 const openingScreen = document.getElementById("opening-screen");
 
 let charCount = 0;
-const speed = 150; 
+const speed = 150;
 
 function preventScroll(e) {
   const popup = document.getElementById('rsvpPopup');
@@ -30,7 +30,8 @@ function unlockScroll() {
   document.body.style.overflow = 'hidden';
   document.body.classList.add('scroll-locked');
 
-  const hiddenDate = localStorage.getItem('rsvpPopupHiddenDate');
+  let hiddenDate = null;
+  try{ hiddenDate = localStorage.getItem('rsvpPopupHiddenDate'); }catch(e){}
   const today = new Date().toDateString();
   if(hiddenDate === today){
     window.removeEventListener('wheel', preventScroll);
@@ -53,7 +54,7 @@ function playOpeningTyping() {
   } else {
     setTimeout(() => {
       openingScreen.classList.add("fade-out");
-      setTimeout(unlockScroll, 1000); 
+      setTimeout(unlockScroll, 1000);
     }, 1000);
   }
 }
@@ -81,28 +82,29 @@ els.forEach(el=>io.observe(el));
 
 
 function countDday() {
-    const weddingDate = new Date("2027-03-13T13:00:00+09:00");
+    const weddingDate = new Date(2027, 2, 13);
     const today = new Date();
-    
+    today.setHours(0,0,0,0);
+
     const difference = weddingDate - today;
-    const dDay = Math.ceil(difference / (1000 * 60 * 60 * 24));
-    
+    const dDay = Math.round(difference / (1000 * 60 * 60 * 24));
+
     const beforeElement = document.getElementById("d-day-before");
     const numElement = document.getElementById("d-day-count");
     const afterElement = document.getElementById("d-day-after");
-    
+
     if (beforeElement && numElement && afterElement) {
         if (dDay > 0) {
             beforeElement.innerText = "결혼식까지";
-            numElement.innerText = dDay; 
+            numElement.innerText = dDay;
             afterElement.innerText = "일 남았습니다.";
         } else if (dDay === 0) {
             beforeElement.innerText = "";
-            numElement.innerText = ""; 
+            numElement.innerText = "";
             afterElement.innerText = "오늘 결혼식 당일입니다! 🎉";
         } else {
             beforeElement.innerText = "결혼식이 ";
-            numElement.innerText = Math.abs(dDay); 
+            numElement.innerText = Math.abs(dDay);
             afterElement.innerText = "일 지났습니다.";
         }
     }
@@ -118,13 +120,25 @@ function toggleContact(){
   document.getElementById('contactPanel').classList.toggle('open');
 }
 function copyNum(btn, num){
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(num).then(()=>{
-      const original = btn.textContent;
-      btn.textContent = '복사됨';
-      btn.classList.add('copied');
-      setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 1500);
-    });
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = '복사됨';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  };
+  const fallback = () => {
+    const t = document.createElement('textarea');
+    t.value = num;
+    t.style.cssText = 'position:fixed;opacity:0;';
+    document.body.appendChild(t);
+    t.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+    t.remove();
+  };
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(num).then(done).catch(fallback);
+  }else{
+    fallback();
   }
 }
 
@@ -133,7 +147,7 @@ let gbAllEntries = [];
 let gbShownCount = 0;
 
 function renderGuestbook(entries){
-  gbAllEntries = entries || [];
+  gbAllEntries = Array.isArray(entries) ? entries : [];
   gbShownCount = 0;
   const empty = document.getElementById('gbEmpty');
 
@@ -157,10 +171,10 @@ function renderGbPage(){
   list.innerHTML = slice.map(entry => `
 <div class="gb-card">
 <div class="gb-card-head">
-<span class="gb-card-name">${entry.name}</span>
-<span class="gb-card-time">${entry.time}</span>
+<span class="gb-card-name">${escapeHtml(entry.name)}</span>
+<span class="gb-card-time">${escapeHtml(entry.time)}</span>
 </div>
-<div class="gb-card-msg">${entry.message}</div>
+<div class="gb-card-msg">${escapeHtml(entry.message)}</div>
 </div>
 `).join('');
 
@@ -174,7 +188,7 @@ function showMoreGuestbook(){
 
 function escapeHtml(str){
   const div = document.createElement('div');
-  div.textContent = str;
+  div.textContent = str ?? '';
   return div.innerHTML;
 }
 
@@ -195,8 +209,8 @@ window.submitGuestbook = async function(e){
   e.preventDefault();
   const nameInput = document.getElementById('gbName');
   const msgInput = document.getElementById('gbMessage');
-  const name = escapeHtml(nameInput.value.trim());
-  const message = escapeHtml(msgInput.value.trim());
+  const name = nameInput.value.trim();
+  const message = msgInput.value.trim();
   if(!name || !message) return;
 
   if(!GB_API_URL){
@@ -352,6 +366,7 @@ loadGuestbook();
   let startX = 0;
   let currentX = 0;
   let dragging = false;
+  let moved = false;
   let widthPx = 0;
 
   function open(index){
@@ -374,13 +389,14 @@ loadGuestbook();
     img.addEventListener('click', () => open(i));
   });
   closeBtn.addEventListener('click', close);
-  lb.addEventListener('click', (e) => {
-    if(e.target === lb) close();
+  lb.addEventListener('click', () => {
+    if(!moved) close();
   });
   window.addEventListener('resize',() => setPosition(false));
 
   function onStart(x){
     dragging = true;
+    moved = false;
     startX = x;
     currentX = x;
     track.style.transition = 'none';
@@ -389,6 +405,7 @@ loadGuestbook();
     if(!dragging) return;
     currentX = x;
     const delta = currentX - startX;
+    if(Math.abs(delta) > 5) moved = true;
     track.style.transform = `translateX(${-current * widthPx + delta}px)`;
   }
   function onEnd(){
@@ -457,7 +474,7 @@ function shareKakao(){
     ]
   });
 }
-document.body.style.overflow = 'hidden';
+
 (function () {
   const popup = document.getElementById('rsvpPopup');
   const sheet = popup?.querySelector('.rsvp-popup-inner');
@@ -533,15 +550,14 @@ function closeRsvpPopup(){
   document.body.classList.remove('scroll-locked');
 }
 function hideRsvpPopupToday(){
-  const today = new Date().toDateString();
-  localStorage.setItem('rsvpPopupHiddenDate', today);
+  try{ localStorage.setItem('rsvpPopupHiddenDate', new Date().toDateString()); }catch(e){}
   closeRsvpPopup();
 }
 const RSVP_API_URL = window.__RSVP_API_URL ||'';
 
 window.submitRSVP = async function(e) {
   e.preventDefault();
-  const name = escapeHtml(document.getElementById('rsvpName').value.trim());
+  const name = document.getElementById('rsvpName').value.trim();
   const attend = document.querySelector('input[name="attend"]:checked').value;
   const count = document.getElementById('rsvpCount').value;
   if(!name) return;
@@ -567,7 +583,7 @@ window.submitRSVP = async function(e) {
     });
     document.getElementById('rsvpPopupForm').reset();
     alert('참석 여부가 전달되었습니다. 감사합니다!');
-    closeRsvpPopup();
+    hideRsvpPopupToday();
   }catch(err){
     console.error('참석 여부 전송 실패:', err);
     alert('참석 여부 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
