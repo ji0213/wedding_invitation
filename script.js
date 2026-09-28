@@ -14,17 +14,10 @@ function preventScroll(e) {
   }
   e.preventDefault();
 }
-let lockedScrollY = 0;
 
 function lockScroll() {
-  lockedScrollY = window.scrollY;
-
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.top = '-${lockedScrollY}px';
-  document.body.style.width = '100%';
-
   document.body.classList.add('scroll-locked');
   window.addEventListener('wheel', preventScroll, { passive: false });
   window.addEventListener('touchmove', preventScroll, { passive: false });
@@ -45,11 +38,6 @@ function unlockScroll() {
     document.body.classList.remove('scroll-locked');
     document.documentElement.style.removeProperty('overflow');
     document.body.style.removeProperty('overflow');
-    document.body.style.removeProperty('position');
-    document.body.style.removeProperty('top');
-    document.body.style.removeProperty('width');
-
-    window.scrollTo(0, lockedScrollY);
     return;
   }
   setTimeout(() =>{
@@ -78,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 (function(){
   function setHeroHeight(){
-    document.documentElement.style.setProperty('--hero-vh','100svh');
+    document.documentElement.style.setProperty('--hero-vh',window.innerHeight + 'px');
   }
   setHeroHeight();
   window.addEventListener('orientationchange',setHeroHeight);
