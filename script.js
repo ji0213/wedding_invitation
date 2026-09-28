@@ -6,8 +6,8 @@ let charCount = 0;
 const speed = 150; 
 
 function preventScroll(e) {
-  const popup = document.getElementById('rsvPopup');
-  const sheet = document.querySelector('.resv-popup-inner');
+  const popup = document.getElementById('rsvpPopup');
+  const sheet = document.querySelector('.rsvp-popup-inner');
 
   if(popup?.classList.contains('show') && sheet?.contains(e.target)){
     return;
