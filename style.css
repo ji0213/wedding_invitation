@@ -412,18 +412,21 @@ section{
 }
 
 .gallery-main{
-  aspect-ratio:4/5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
   border-radius:4px;
   overflow:hidden;
-  background:linear-gradient(155deg,#f0e4cf,#e8d8ba);
+  background: #f3eadc;
   touch-action:pan-y;
 }
 .gallery-main img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:opacity 0.15s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.15s ease;
 }
 .gallery-thumbs{
   position:relative;

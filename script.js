@@ -267,7 +267,22 @@ loadGuestbook();
     });
   }
   window.__galleryShow = showPhoto;
-
+  function fixHeight(){
+    const box = main.parentElement;
+    const w = box.clientWidth;
+    const cap = window.innerHeight * 0.75;
+    let h = 0;
+    thumbs.forEach(t => {
+      if(t.naturalWidth) h = Math.max(h, w * t.naturalHeight/t.naturalWidth);
+    });
+    if(h) box.style.height = Math.min(h, cap) + 'px';
+  }
+  thumbs.forEach( t=>{
+    if(t.complete) fixHeight();
+    else t.addEventListener('load', fixHeight);
+  });
+  window.addEventListener('resize', fixHeight);
+  
   thumbs.forEach((t, i) => t.addEventListener('click', () => showPhoto(i)));
 
   let sx = 0, sy = 0;
