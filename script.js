@@ -270,12 +270,16 @@ loadGuestbook();
 
   thumbs.forEach((t, i) => t.addEventListener('click', () => showPhoto(i)));
 
-  let sx = 0;
-  main.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive:true });
+  let sx = 0, sy = 0;
+  main.addEventListener('touchstart', e => {
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, { passive:true });
   main.addEventListener('touchend', e => {
     const d = e.changedTouches[0].clientX - sx;
-    if(Math.abs(d) > 40){
-      showPhoto((cur + (d < 0 ? 1 : -1) + thumbs.length) % thumbs.length);
+    const d = e.changedTouches[0].clientY - sy;
+    if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)*1.5){
+      showPhoto((cur + (dx < 0 ? 1 : -1) + thumbs.length) % thumbs.length);
     }
   });
 })();
