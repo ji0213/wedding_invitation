@@ -276,8 +276,8 @@ loadGuestbook();
     sy = e.touches[0].clientY;
   }, { passive:true });
   main.addEventListener('touchend', e => {
-    const d = e.changedTouches[0].clientX - sx;
-    const d = e.changedTouches[0].clientY - sy;
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = e.changedTouches[0].clientY - sy;
     if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)*1.5){
       showPhoto((cur + (dx < 0 ? 1 : -1) + thumbs.length) % thumbs.length);
     }
