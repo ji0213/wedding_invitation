@@ -440,9 +440,9 @@ section{
 }
 .gallery-thumbs::-webkit-scrollbar{ display:none; }
 .gallery-thumbs img{
-  flex:0 0 52px;
-  width: 52px;
-  height: 52px;
+  flex:0 0 65px;
+  width: 65px;
+  height: 65px;
   object-fit:cover;
   display:block;
   border-radius:4px;
