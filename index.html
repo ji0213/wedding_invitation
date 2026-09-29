@@ -176,17 +176,15 @@
   <section style="padding-top:0;">
     <div class="kicker reveal">Gallery</div>
     <div class="divider reveal"></div>
-    <div class="gallery-wrap reveal">
-      <button class="gallery-arrow prev" id="galleryPrev" aria-label="이전 사진">‹</button>
-      <div class="gallery-slider" id="gallerySlider">
-        <div class="slide"><img src="image/asd.png" alt=""></div>
-        <div class="slide"><img src="image/fgs.png" alt=""></div>
-        <div class="slide"><img src="image/wer.png" alt=""></div>
-        <div class="slide"><img src="image/asdf.jpg" alt=""></div>
+    <div class="gallery reveal">
+      <div class="gallery-main"><img id="galleryMain" src="image/asd.png" alt=""></div>
+      <div class="gallery-thumbs" id="galleryThumbs">
+        <img src="image/asd.png" class="active" alt="">
+        <img src="image/fgs.png" alt="">
+        <img src="image/wer.png" alt="">
+        <img src="image/asdf.jpg" alt="">
       </div>
-      <button class="gallery-arrow next" id="galleryNext" aria-label="다음 사진">›</button>
     </div>
-    <div class="gallery-dots" id="galleryDots"></div>
   </section>
   <section>
     <div class="kicker reveal">When</div>
@@ -338,7 +336,7 @@
   </form>
 </section>
 
-  
+
   <section>
     <div class="kicker reveal">Guestbook</div>
     <div class="divider reveal"></div>

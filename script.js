@@ -246,43 +246,38 @@ loadGuestbook();
 
 
 (function(){
-  const slider = document.getElementById('gallerySlider');
-  const dotsWrap = document.getElementById('galleryDots');
-  if(!slider || !dotsWrap) return;
+  const main = document.getElementById('galleryMain');
+  const thumbWrap = document.getElementById('galleryThumbs');
+  if(!main || !thumbWrap) return;
 
-  const slides = slider.querySelectorAll('.slide');
-  slides.forEach((_, i) => {
-    const dot = document.createElement('span');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dotsWrap.appendChild(dot);
-  });
-  const dots = dotsWrap.querySelectorAll('.dot');
+  const thumbs = Array.from(thumbWrap.querySelectorAll('img'));
+  if(thumbs.length === 0) return;
+  let cur = 0;
+  window.__galleryIndex = 0;
 
-  function updateActiveDot(){
-    const slideWidth = slides[0].getBoundingClientRect().width + 10;
-    const index = Math.round(slider.scrollLeft / slideWidth);
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  function showPhoto(i){
+    cur = i;
+    window.__galleryIndex = i;
+    main.style.opacity = 0;
+    setTimeout(() => { main.src = thumbs[i].src; main.style.opacity = 1; }, 150);
+    thumbs.forEach((t, k) => t.classList.toggle('active', k === i));
+    thumbWrap.scrollTo({
+      left: thumbs[i].offsetLeft - (thumbWrap.clientWidth - thumbs[i].clientWidth) / 2,
+      behavior: 'smooth'
+    });
   }
+  window.__galleryShow = showPhoto;
 
-  let ticking = false;
-  slider.addEventListener('scroll', () => {
-    if(!ticking){
-      requestAnimationFrame(() => { updateActiveDot(); ticking = false; });
-      ticking = true;
+  thumbs.forEach((t, i) => t.addEventListener('click', () => showPhoto(i)));
+
+  let sx = 0;
+  main.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive:true });
+  main.addEventListener('touchend', e => {
+    const d = e.changedTouches[0].clientX - sx;
+    if(Math.abs(d) > 40){
+      showPhoto((cur + (d < 0 ? 1 : -1) + thumbs.length) % thumbs.length);
     }
   });
-
-
-  const prevBtn = document.getElementById('galleryPrev');
-  const nextBtn = document.getElementById('galleryNext');
-  function goTo(delta){
-    const slideWidth = slides[0].getBoundingClientRect().width + 10;
-    const current = Math.round(slider.scrollLeft / slideWidth);
-    const target = Math.max(0, Math.min(slides.length - 1, current + delta));
-    slider.scrollTo({ left: target * slideWidth, behavior:'smooth' });
-  }
-  if(prevBtn) prevBtn.addEventListener('click', () => goTo(-1));
-  if(nextBtn) nextBtn.addEventListener('click', () => goTo(1));
 })();
 
 (function(){
@@ -350,9 +345,10 @@ loadGuestbook();
 })();
 
 (function(){
-  const slider = document.getElementById('gallerySlider');
-  if(!slider) return;
-  const imgs = Array.from(slider.querySelectorAll('img'));
+  const thumbWrap = document.getElementById('galleryThumbs');
+  const mainImg = document.getElementById('galleryMain');
+  if(!thumbWrap || !mainImg) return;
+  const imgs = Array.from(thumbWrap.querySelectorAll('img'));
   if(imgs.length === 0) return;
   const lb = document.createElement('div');
   lb.className = 'lightbox';
@@ -382,16 +378,15 @@ loadGuestbook();
   function close(){
     lb.classList.remove('open');
     document.body.style.overflow='';
+    if(window.__galleryShow) window.__galleryShow(current);
   }
   function setPosition(animate){
     widthPx = lb.clientWidth;
     track.style.transition = animate === false ? 'none' : 'transform 0.3s ease';
     track.style.transform = `translateX(${-current * widthPx}px)`;
   }
-  imgs.forEach((img, i) => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => open(i));
-  });
+  mainImg.style.cursor = 'zoom-in';
+  mainImg.addEventListener('click', () => open(window.__galleryIndex || 0));
   closeBtn.addEventListener('click', close);
   lb.addEventListener('click', () => {
     if(!moved) close();
@@ -637,7 +632,7 @@ window.removePhotoPreview = function(index){
 
 window.uploadPhotos = async function(e){
   e.preventDefault();
-  const nameInput = document.getElementById('photoUloadName');
+  const nameInput = document.getElementById('photoUploaderName');
   const uploaderName = nameInput.value.trim();
   const btn = document.getElementById('photoUploadBtn');
   const progressWrap = document.getElementById('photoProgressWrap');
