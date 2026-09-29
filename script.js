@@ -71,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setHeroHeight();
   window.addEventListener('orientationchange',setHeroHeight);
+  window.addEventListener('orientationchange', setHeroHeight);
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', setHeroHeight);
+  }
 })()
 const els = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
