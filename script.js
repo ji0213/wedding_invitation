@@ -637,11 +637,17 @@ window.removePhotoPreview = function(index){
 
 window.uploadPhotos = async function(e){
   e.preventDefault();
+  const nameInput = document.getElementById('photoUloadName');
+  const uploaderName = nameInput.value.trim();
   const btn = document.getElementById('photoUploadBtn');
   const progressWrap = document.getElementById('photoProgressWrap');
   const progressFill = document.getElementById('photoProgressFill');
   const progressText = document.getElementById('photoProgressText');
 
+  if(!uploaderName){
+    alert('성함을 입력해주세요.');
+    return;
+  }
   if(selectedPhotoFiles.length === 0){
     alert('사진을 선택해주세요.');
     return;
@@ -666,7 +672,7 @@ window.uploadPhotos = async function(e){
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
-          uploaderName: '익명',
+          uploaderName: uploaderName,
           fileName: file.name,
           mimeType: file.type,
           fileData: fileData
