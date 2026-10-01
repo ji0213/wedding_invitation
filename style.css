@@ -22,15 +22,17 @@ body{
   overflow-x:hidden;
 }
 #opening-screen {
-   position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
+  height: 100%;
+  height: 100dvh;
   width: 100%;
   height: 100vh;
   background-color: rgba(17, 17, 17, 0.85);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-
+  animation: openingFailsafe 0s linear 8s forwards;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +40,13 @@ body{
   z-index: 99999;
   transition: opacity 1s ease-in-out, visibility 1s;
 }
-
+@keyframes openingFailsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
 #typing-opening {
   color: #ffffff;
   font-size: 22px;

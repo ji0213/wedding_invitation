@@ -30,10 +30,13 @@ function unlockScroll() {
   document.body.style.overflow = 'hidden';
   document.body.classList.add('scroll-locked');
 
-  let hiddenDate = null;
-  try{ hiddenDate = localStorage.getItem('rsvpPopupHiddenDate'); }catch(e){}
+  let hiddenDate = null, done = null;
+  try{
+    hiddenDate = localStorage.getItem('rsvpPopupHiddenDate'); 
+    done = localStorage.getItem('rsvpDone');
+  }catch(e){}
   const today = new Date().toDateString();
-  if(hiddenDate === today){
+  if(hiddenDate === done || hiddenDate === today || done){
     window.removeEventListener('wheel', preventScroll);
     window.removeEventListener('touchmove', preventScroll);
     document.body.classList.remove('scroll-locked');
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(window.visualViewport){
     window.visualViewport.addEventListener('resize', setHeroHeight);
   }
-})()
+})();
 const els = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
@@ -223,6 +226,8 @@ window.submitGuestbook = async function(e){
   }
 
   const submitBtn = document.querySelector('#gbForm .rsvp-submit');
+  const originalText = submitBtn ? submitBtn.textContent : '';
+  
   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = '전달 중...'; }
 
   try{
@@ -235,10 +240,10 @@ window.submitGuestbook = async function(e){
 
     setTimeout(loadGuestbook, 600);
   }catch(err){
-    console.error('메시지 저장 실패:', err);
-    alert('메시지 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
+    console.error('방명록 저장 실패:', err);
+    alert('방명록 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
   }finally{
-    if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = '메시지 남기기'; }
+    if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = originalText; }
   }
 };
 
@@ -474,7 +479,7 @@ function shareKakao(){
     objectType: 'feed',
     content: {
       title: '박정희♡최지우 결혼합니다',
-      description: '2027.03.13 토요일 1시 엔팰리스웨딩컨벤션',
+      description: '2027.03.13 토요일 오후 1시 엔팰리스웨딩컨벤션',
       imageUrl: 'https://ji0213.github.io/wedding_invitation/image/asd.png',
       link: {
         mobileWebUrl:window.location.href,
@@ -568,7 +573,7 @@ function closeRsvpPopup(){
   document.body.classList.remove('scroll-locked');
 }
 function hideRsvpPopupToday(){
-  try{ localStorage.setItem('rsvpPopupHiddenDate', new Date().toDateString()); }catch(e){}
+  try{ localStorage.setItem('rsvpDone', '1'); }catch(e){}
   closeRsvpPopup();
 }
 const RSVP_API_URL = window.__RSVP_API_URL ||'';
@@ -681,14 +686,14 @@ window.uploadPhotos = async function(e){
     progressText.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
 
     try{
-      const fileData = await fileToBase64(file);
+      const fileData = await resizeImage(file);
       const res = await fetch(PHOTO_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
           uploaderName: uploaderName,
-          fileName: file.name,
-          mimeType: file.type,
+          fileName: file.name.replace(/\.\w+$/,'')+'.jpg',
+          mimeType: 'image/jpge',
           fileData: fileData
         })
       });
