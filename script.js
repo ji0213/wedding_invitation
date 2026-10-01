@@ -74,7 +74,13 @@ function playOpeningTyping() {
 
 document.addEventListener("DOMContentLoaded", () => {
   lockScroll();
-  playOpeningTyping();
+  const skip = new URLSearchParams(location.search).get('skip') === '1';
+  if(skip){
+    history.replaceState(null, '', location.pathname);
+    unlockScroll();
+  }else{
+    playOpeningTyping();
+  }
 });
 
 
