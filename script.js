@@ -682,17 +682,17 @@ window.uploadPhotos = async function(e){
     alert('업로드 연동이 아직 설정되지 않았어요.');
     return;
   }
-  const MAX_MB=20;
+  const MAX_MB = 20;
   const bad = selectedPhotoFiles.find(f => !f.type.startsWith('image/'));
   if(bad){
-    alert('"${bad.name}"은(는) 사진 파일이 아니에요.');
+    alert('"' + bad.name + '"은(는) 사진 파일이 아니에요.');
     return;
   }
   const big = selectedPhotoFiles.find(f => f.size > MAX_MB * 1024 * 1024);
   if(big){
-    alert('"${big.name}"은(는) 용량이 너무 커요.(${big.size/1024/1024).toFixed(1)}MB, 최대 ${MAX_MB}MB)');
+    alert('"' + big.name + '"은(는) 용량이 너무 커요. (' + (big.size/1024/1024).toFixed(1) + 'MB, 최대 ' + MAX_MB + 'MB)');
     return;
-  }
+}
 
   btn.disabled = true;
   progressWrap.style.display = 'block';
@@ -721,7 +721,7 @@ window.uploadPhotos = async function(e){
       }
     }catch(err){
       console.error('사진 업로드 실패:', err);
-      progressText.textContent = '"${file.name}" 업로드 실패 : ${friendlyuploadError(err)}';
+      progressText.textContent = '"' + file.name + '" 업로드 실패: ' + friendlyUploadError(err);
       btn.disabled = false;
       return;
     }
