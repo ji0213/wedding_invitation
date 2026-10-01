@@ -24,7 +24,7 @@ function lockScroll() {
 }
 function setFlag(k, v){
   try{
-    localStorage.setTime(k,v);
+    localStorage.setItem(k,v);
   }catch(e){}
   document.cookie = k + '=' + encodeURIComponent(v) + ';max-age=31536000;path=/;samesite=lax';
 }
@@ -33,7 +33,7 @@ function getFlag(k){
     const v = localStorage.getItem(k);
     if(v) return v;
   }catch(e){}
-  const m = document.cookie.match(new RegExp('(?:^|;)' + k + '=([;]*)'));
+  const m = document.cookie.match(new RegExp('(?:^|; )' + k + '=([; ]*)'));
   return m ? decodeURIComponent(m[1]) : null;
 }
 function unlockScroll() {
@@ -637,7 +637,7 @@ function warnLeave(e){
 }
 function lockUpload(){
   uploadLockEl = document.createElement('div');
-  uploadLockEl.classlist = 'upload-lock';
+  uploadLockEl.className = 'upload-lock';
   uploadLockEl.innerHTML = '사진을 올리는 중입니다.<br>잠시만 기다려주세요.';
   document.body.appendChild(uploadLockEl);
   window.addEventListener('beforeunload', warnLeave);
