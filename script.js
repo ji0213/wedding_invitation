@@ -258,11 +258,24 @@ loadGuestbook();
   const thumbs = Array.from(thumbWrap.querySelectorAll('img'));
   if(thumbs.length === 0) return;
   let cur = 0;
+  function setBoxHeight(i){
+    const t = thumbs[i];
+    if(!t || !t.naturalWidth) return;
+    const box = main.parentElement;
+    const h = box.clientWidth * t.naturalHeight / t.naturalWidth;
+    box.style.height = Math.min(h, window.innerHeight * 0.75)+'px';
+  }
+  thumbs.forEach(t =>{
+    if(t.complete) setBoxHeight(cur);
+    else t.addEventListener('load',() => setBoxHeight(cur));
+  });
+  window.addEventListener('resize',() => setBoxHeight(cur));
   window.__galleryIndex = 0;
 
   function showPhoto(i){
     cur = i;
     window.__galleryIndex = i;
+    setBoxHeight(i);
     main.style.opacity = 0;
     setTimeout(() => { main.src = thumbs[i].src; main.style.opacity = 1; }, 150);
     thumbs.forEach((t, k) => t.classList.toggle('active', k === i));
@@ -272,21 +285,6 @@ loadGuestbook();
     });
   }
   window.__galleryShow = showPhoto;
-  function fixHeight(){
-    const box = main.parentElement;
-    const w = box.clientWidth;
-    const cap = window.innerHeight * 0.75;
-    let h = 0;
-    thumbs.forEach(t => {
-      if(t.naturalWidth) h = Math.max(h, w * t.naturalHeight/t.naturalWidth);
-    });
-    if(h) box.style.height = Math.min(h, cap) + 'px';
-  }
-  thumbs.forEach( t=>{
-    if(t.complete) fixHeight();
-    else t.addEventListener('load', fixHeight);
-  });
-  window.addEventListener('resize', fixHeight);
   
   thumbs.forEach((t, i) => t.addEventListener('click', () => showPhoto(i)));
 
