@@ -33,7 +33,7 @@ function getFlag(k){
     const v = localStorage.getItem(k);
     if(v) return v;
   }catch(e){}
-  const m = document.cookie.match(new RegExp('(?:^|; )' + k + '=([; ]*)'));
+  const m = document.cookie.match(new RegExp('(?:^|; )' + k + '=([^;]*)'));
   return m ? decodeURIComponent(m[1]) : null;
 }
 function unlockScroll() {
@@ -639,15 +639,12 @@ function lockUpload(){
   uploadLockEl = document.createElement('div');
   uploadLockEl.className = 'upload-lock';
   uploadLockEl.innerHTML = 
-  '<div>
-    <div id = "uploadLockMsg">업로드하고 있습니다.</div>' + 
-    '<div style = "font-size: 12px;
-    opacity: 0.8;
-    margin-top: 6px;">잠시만 기다려 주세요.</div>
-  </div>';
+  '<div><div id = "uploadLockMsg">업로드하고 있습니다.</div>' + 
+  '<div style = "font-size: 12px; opacity: 0.8; margin-top: 6px;">잠시만 기다려 주세요.</div></div>';
 
   const lockMsg = document.getElementById('uploadLockMsg');
   if(lockMsg) lockMsg.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
+
   document.body.appendChild(uploadLockEl);
   window.addEventListener('beforeunload', warnLeave);
 }
@@ -748,7 +745,7 @@ window.uploadPhotos = async function(e){
     const percent = Math.round(((i) / selectedPhotoFiles.length) * 100);
     progressFill.style.width = percent + '%';
     progressText.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
-    const lockmsg = document.getElementById('uploadLockMsg');
+    const lockMsg = document.getElementById('uploadLockMsg');
     if(lockMsg) lockMsg.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
 
     try{
