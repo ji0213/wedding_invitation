@@ -639,12 +639,9 @@ function lockUpload(){
   uploadLockEl = document.createElement('div');
   uploadLockEl.className = 'upload-lock';
   uploadLockEl.innerHTML = 
-  '<div><div id = "uploadLockMsg">업로드하고 있습니다.</div>' + 
+  '<div><div id = "uploadLockMsg">업로드 중 입니다.</div>' + 
   '<div style = "font-size: 12px; opacity: 0.8; margin-top: 6px;">잠시만 기다려 주세요.</div></div>';
-
-  const lockMsg = document.getElementById('uploadLockMsg');
-  if(lockMsg) lockMsg.textContent = "업로드 중... (" + (i+1) + "/" + selectedPhotoFiles.length + ")";
-
+  
   document.body.appendChild(uploadLockEl);
   window.addEventListener('beforeunload', warnLeave);
 }
