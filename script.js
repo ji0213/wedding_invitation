@@ -630,6 +630,25 @@ function fileToBase64(file){
     reader.readAsDataURL(file);
   });
 }
+let uploadLockEl = null;
+function warnLeave(e){
+  e.preventDefault();
+  e.returnValue = '';
+}
+function lockUpload(){
+  uploadLockEl = document.createElement('div');
+  uploadLockEl.classlist = 'upload-lock';
+  uploadLockEl.innerHTML = '사진을 올리는 중입니다.<br>잠시만 기다려주세요.';
+  document.body.appendChild(uploadLockEl);
+  window.addEventListener('beforeunload', warnLeave);
+}
+function unlockUpload(){
+  if(uploadLockEl){
+    uploadLockEl.remove();
+    uploadLockEl = null;
+  }
+  window.removeEventListener('beforeunload', warnLeave);
+}
 async function resizeImage(file, max = 2000, quality = 0.85){
   const bmp = await createImageBitmap(file);
   const scale = Math.min(1, max / Math.max(bmp.width, bmp.height));
@@ -712,6 +731,7 @@ window.uploadPhotos = async function(e){
 }
 
   btn.disabled = true;
+  lockUpload();
   progressWrap.style.display = 'block';
 
   for(let i = 0; i < selectedPhotoFiles.length; i++){
@@ -740,6 +760,7 @@ window.uploadPhotos = async function(e){
       console.error('사진 업로드 실패:', err);
       progressText.textContent = '"' + file.name + '" 업로드 실패: ' + friendlyUploadError(err);
       btn.disabled = false;
+      unlockUpload();
       return;
     }
   }
@@ -750,4 +771,5 @@ window.uploadPhotos = async function(e){
   document.getElementById('photoPreviewList').innerHTML = '';
   document.getElementById('photoUploadForm').reset();
   btn.disabled = false;
+  unlockUpload();
 };
