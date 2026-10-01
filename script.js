@@ -22,7 +22,20 @@ function lockScroll() {
   window.addEventListener('wheel', preventScroll, { passive: false });
   window.addEventListener('touchmove', preventScroll, { passive: false });
 }
-
+function setFlag(k, v){
+  try{
+    localStorage.setTime(k,v);
+  }catch(e){}
+  document.cookie = k + '=' + encodeURIComponent(v) + ';max-age=31536000;path=/;samesite=lax';
+}
+function getFlag(k){
+  try{
+    const v = localStorage.getItem(k);
+    if(v) return v;
+  }catch(e){}
+  const m = document.cookie.match(new RegExp('(?:^|;)' + k + '=([;]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 function unlockScroll() {
   openingScreen.style.display = 'none';
 
@@ -30,13 +43,10 @@ function unlockScroll() {
   document.body.style.overflow = 'hidden';
   document.body.classList.add('scroll-locked');
 
-  let hiddenDate = null, done = null;
-  try{
-    hiddenDate = localStorage.getItem('rsvpPopupHiddenDate'); 
-    done = localStorage.getItem('rsvpDone');
-  }catch(e){}
+  const hiddenDate = getFlag('rsvpPopupHiddenDate');
+  const done = getFlag('rsvpDone');
   const today = new Date().toDateString();
-  if(hiddenDate === done || hiddenDate === today || done){
+  if(hiddenDate === today || done){
     window.removeEventListener('wheel', preventScroll);
     window.removeEventListener('touchmove', preventScroll);
     document.body.classList.remove('scroll-locked');
@@ -559,7 +569,7 @@ function closeRsvpPopup(){
   document.body.classList.remove('scroll-locked');
 }
 function hideRsvpPopupToday(){
-  try{ localStorage.setItem('rsvpPopupHiddenDate', new Date().toDateString()); }catch(e){}
+  setFlag('rsvpPopupHiddenDate', new Date().toDateString());
   closeRsvpPopup();
 }
 const RSVP_API_URL = window.__RSVP_API_URL ||'';
@@ -592,6 +602,7 @@ window.submitRSVP = async function(e) {
     });
     document.getElementById('rsvpPopupForm').reset();
     alert('참석 여부가 전달되었습니다. 감사합니다!');
+    setFlag('rsvpDone', '1');
     closeRsvpPopup();
   }catch(err){
     console.error('참석 여부 전송 실패:', err);
