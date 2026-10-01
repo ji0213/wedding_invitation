@@ -559,7 +559,7 @@ function closeRsvpPopup(){
   document.body.classList.remove('scroll-locked');
 }
 function hideRsvpPopupToday(){
-  try{ localStorage.setItem('rsvpDone', '1'); }catch(e){}
+  try{ localStorage.setItem('rsvpPopupHiddenDate', new Date().toDateString()); }catch(e){}
   closeRsvpPopup();
 }
 const RSVP_API_URL = window.__RSVP_API_URL ||'';
@@ -592,7 +592,7 @@ window.submitRSVP = async function(e) {
     });
     document.getElementById('rsvpPopupForm').reset();
     alert('참석 여부가 전달되었습니다. 감사합니다!');
-    hideRsvpPopupToday();
+    closeRsvpPopup();
   }catch(err){
     console.error('참석 여부 전송 실패:', err);
     alert('참석 여부 전송에 실패했어요. 잠시 후 다시 시도해주세요.');
@@ -612,6 +612,27 @@ function fileToBase64(file){
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
+}
+async function resizeImage(file, max = 2000, quality = 0.85){
+  const bmp = await createImageBitmap(file);
+  const scale = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas');
+  c.width = Math.round(bmp.width * scale);
+  c.height = Math.round(bmp.height * scale);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  return c.toDataURL('image/jpeg', quality);
+}
+
+function friendlyUploadError(err){
+  const msg = String((err && err.message) || err);
+  if(!navigator.onLine) return '인터넷 연결을 확인해주세요.';
+  if(/createImageBitmap|decode|source image|InvalidState/i.test(msg))
+    return '지원하지 않는 사진 형식이에요. JPG나 PNG로 올려주세요.';
+  if(/Failed to fetch|NetworkError|Load failed/i.test(msg))
+    return '전송에 실패했어요. 사진 용량이 크거나 네트워크가 불안정할 수 있어요.';
+  if(/Unexpected token|JSON/i.test(msg))
+    return '서버 응답에 문제가 있어요. 사진 수를 줄여 다시 시도해주세요.';
+  return msg;
 }
 
 window.renderPhotoPreviews = function(){
@@ -661,6 +682,17 @@ window.uploadPhotos = async function(e){
     alert('업로드 연동이 아직 설정되지 않았어요.');
     return;
   }
+  const MAX_MB=20;
+  const bad = selectedPhotoFiles.find(f => !f.type.startsWith('image/'));
+  if(bad){
+    alert('"${bad.name}"은(는) 사진 파일이 아니에요.');
+    return;
+  }
+  const big = selectedPhotoFiles.find(f => f.size > MAX_MB * 1024 * 1024);
+  if(big){
+    alert('"${big.name}"은(는) 용량이 너무 커요.(${big.size/1024/1024).toFixed(1)}MB, 최대 ${MAX_MB}MB)');
+    return;
+  }
 
   btn.disabled = true;
   progressWrap.style.display = 'block';
@@ -679,7 +711,7 @@ window.uploadPhotos = async function(e){
         body: JSON.stringify({
           uploaderName: uploaderName,
           fileName: file.name.replace(/\.\w+$/,'')+'.jpg',
-          mimeType: 'image/jpge',
+          mimeType: 'image/jpeg',
           fileData: fileData
         })
       });
@@ -689,7 +721,7 @@ window.uploadPhotos = async function(e){
       }
     }catch(err){
       console.error('사진 업로드 실패:', err);
-      progressText.textContent = '사진 업로드에 실패했어요. 잠시 후 다시 시도해주세요.';
+      progressText.textContent = '"${file.name}" 업로드 실패 : ${friendlyuploadError(err)}';
       btn.disabled = false;
       return;
     }
